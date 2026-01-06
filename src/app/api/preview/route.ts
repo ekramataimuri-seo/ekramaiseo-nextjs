@@ -1,6 +1,7 @@
 import { print } from "graphql/language/printer";
 
-import { ContentNode, LoginPayload } from "@/gql/graphql";
+// WE REMOVED "LoginPayload" FROM THIS LIST TO FIX THE ERROR:
+import { ContentNode } from "@/gql/graphql"; 
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { draftMode } from "next/headers";
 import { NextResponse } from "next/server";
@@ -33,7 +34,8 @@ export async function GET(request: Request) {
   }
 `;
 
-  const { login } = await fetchGraphQL(
+  // WE CHANGED "LoginPayload" TO "any" SO IT DOES NOT CRASH:
+  const { login } = await fetchGraphQL<{ login: any }>(
     print(mutation),
   );
 
@@ -51,7 +53,7 @@ export async function GET(request: Request) {
     }
   `;
 
-  const { contentNode } = await fetchGraphQL(
+  const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
     print(query),
     {
       id,
