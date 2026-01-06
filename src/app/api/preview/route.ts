@@ -33,13 +33,15 @@ export async function GET(request: Request) {
   }
 `;
 
-  const { login } = await fetchGraphQL<{ login: LoginPayload }>(
+  const { login } = await fetchGraphQL(
     print(mutation),
   );
 
   const authToken = login.authToken;
 
-  draftMode().enable();
+  // --- THE FIX IS HERE ---
+  (await draftMode()).enable();
+  // -----------------------
 
   const query = gql`
     query GetContentNode($id: ID!) {
@@ -51,7 +53,7 @@ export async function GET(request: Request) {
     }
   `;
 
-  const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
+  const { contentNode } = await fetchGraphQL(
     print(query),
     {
       id,
