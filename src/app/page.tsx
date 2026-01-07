@@ -4,7 +4,6 @@ import { print } from "graphql/language/printer";
 import gql from "graphql-tag";
 
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
-import { ContentNode } from "@/gql/graphql";
 import { setSeoData } from "@/utils/seoData";
 
 // 1. Define the Query specifically to get CONTENT
@@ -26,7 +25,7 @@ const HOME_QUERY = gql`
 `;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
+  const { contentNode } = await fetchGraphQL<{ contentNode: any }>(
     print(HOME_QUERY),
     { uri: "/home/" }
   );
@@ -36,16 +35,15 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  // 2. Try fetching with Slashes (Standard WPGraphQL)
-  let { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
+  // 2. Try fetching with Slashes
+  let { contentNode } = await fetchGraphQL<{ contentNode: any }>(
     print(HOME_QUERY),
     { uri: "/home/" }
   );
 
   // 3. Fallback: If failed, try without slashes
   if (!contentNode) {
-    console.log("Retrying home query without slashes...");
-    const retry = await fetchGraphQL<{ contentNode: ContentNode }>(
+    const retry = await fetchGraphQL<{ contentNode: any }>(
       print(HOME_QUERY),
       { uri: "home" }
     );
@@ -55,7 +53,7 @@ export default async function Home() {
   // 4. If still nothing, show 404
   if (!contentNode) return notFound();
 
-  // 5. RENDER DIRECTLY (Bypassing Template to ensure content shows)
+  // 5. RENDER DIRECTLY
   return (
     <main className="container mx-auto py-10 px-5">
       <h1 className="text-4xl font-bold mb-6">{contentNode.title}</h1>
