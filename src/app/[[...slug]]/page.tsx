@@ -12,11 +12,14 @@ import { nextSlugToWpSlug } from "@/utils/nextSlugToWpSlug";
 import PostTemplate from "@/components/Templates/Post/PostTemplate";
 import { SeoQuery } from "@/queries/general/SeoQuery";
 
+// FIX 1: Update type to Promise
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string[] }>;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  // FIX 2: Await the params
+  const params = await props.params;
   const slug = nextSlugToWpSlug(params.slug);
   const isPreview = slug.includes("preview");
 
@@ -46,8 +49,11 @@ export function generateStaticParams() {
   return [];
 }
 
-export default async function Page({ params }: Props) {
+export default async function Page(props: Props) {
+  // FIX 3: Await the params here too
+  const params = await props.params;
   const slug = nextSlugToWpSlug(params.slug);
+  
   const isPreview = slug.includes("preview");
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
     print(ContentInfoQuery),
