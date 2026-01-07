@@ -1,9 +1,9 @@
+// FIX: Crash-Proof 404 Page
 import type { Metadata } from "next";
 import { print } from "graphql/language/printer";
-import Link from "next/link"; // Added for the home button
+import Link from "next/link";
 
 import { setSeoData } from "@/utils/seoData";
-
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { ContentNode, Page } from "@/gql/graphql";
 import { PageQuery } from "@/components/Templates/Page/PageQuery";
@@ -18,7 +18,6 @@ export async function generateMetadata(): Promise<Metadata> {
       { id: notFoundPageWordPressId, idType: "DATABASE_ID" },
     );
 
-    // FIX: If WordPress returns nothing, return default metadata
     if (!contentNode) {
       return { title: "Page Not Found" };
     }
@@ -31,8 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
         canonical: `${process.env.NEXT_PUBLIC_BASE_URL}/404-not-found/`,
       },
     } as Metadata;
-  } catch (error) {
-    // FIX: If API fails, return default metadata
+  } catch (e) {
     return { title: "Page Not Found" };
   }
 }
@@ -46,17 +44,16 @@ export default async function NotFound() {
     if (page?.content) {
        return <div dangerouslySetInnerHTML={{ __html: page.content }} />;
     }
-  } catch (error) {
-    console.warn("Custom 404 page not found in WordPress. Using default.");
+  } catch (e) {
+    // Ignore error and show default
   }
 
-  // FIX: Fallback UI if WordPress data is missing
   return (
     <div style={{ padding: "100px", textAlign: "center", fontFamily: "sans-serif" }}>
-      <h1 style={{ fontSize: "48px", marginBottom: "20px" }}>404</h1>
-      <p style={{ fontSize: "20px", marginBottom: "30px" }}>Page not found</p>
+      <h1>404 - Page Not Found</h1>
+      <p>The page you are looking for does not exist.</p>
       <Link href="/" style={{ textDecoration: "underline", color: "blue" }}>
-        Return Home
+        Go Home
       </Link>
     </div>
   );
