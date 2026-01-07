@@ -12,15 +12,17 @@ import { nextSlugToWpSlug } from "@/utils/nextSlugToWpSlug";
 import PostTemplate from "@/components/Templates/Post/PostTemplate";
 import { SeoQuery } from "@/queries/general/SeoQuery";
 
-// FIX 1: Update type to Promise
+// Updated type for catch-all route
 type Props = {
-  params: Promise<{ slug: string[] }>;
+  params: Promise<{ slug?: string[] }>;
 };
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
-  // FIX 2: Await the params
   const params = await props.params;
-  const slug = nextSlugToWpSlug(params.slug);
+  // FIX: Join the array into a string string
+  const path = params.slug?.join("/") || "";
+  const slug = nextSlugToWpSlug(path);
+  
   const isPreview = slug.includes("preview");
 
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
@@ -50,10 +52,11 @@ export function generateStaticParams() {
 }
 
 export default async function Page(props: Props) {
-  // FIX 3: Await the params here too
   const params = await props.params;
-  const slug = nextSlugToWpSlug(params.slug);
-  
+  // FIX: Join the array here too
+  const path = params.slug?.join("/") || "";
+  const slug = nextSlugToWpSlug(path);
+
   const isPreview = slug.includes("preview");
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
     print(ContentInfoQuery),
