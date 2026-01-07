@@ -1,3 +1,4 @@
+// Next.js 16 Fix - Force Update
 import { draftMode } from "next/headers";
 
 export async function fetchGraphQL<T = any>(
@@ -5,7 +6,7 @@ export async function fetchGraphQL<T = any>(
   variables?: { [key: string]: any },
   headers?: { [key: string]: string },
 ): Promise<T> {
-  // FIX: Added "await" here for Next.js 16
+  // FIX: We added 'await' here
   const { isEnabled: preview } = await draftMode();
 
   try {
