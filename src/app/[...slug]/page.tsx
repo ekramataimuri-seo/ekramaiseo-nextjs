@@ -1,83 +1,59 @@
-// FINAL FIX: Array to String Conversion + 404 Crash Prevention
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { print } from "graphql/language/printer";
-
-import { setSeoData } from "@/utils/seoData";
+import gql from "graphql-tag";
 
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
-import { ContentInfoQuery } from "@/queries/general/ContentInfoQuery";
-import { ContentNode } from "@/gql/graphql";
-import PageTemplate from "@/components/Templates/Page/PageTemplate";
-import { nextSlugToWpSlug } from "@/utils/nextSlugToWpSlug";
-import PostTemplate from "@/components/Templates/Post/PostTemplate";
-import { SeoQuery } from "@/queries/general/SeoQuery";
+import { setSeoData } from "@/utils/seoData";
 
-type Props = {
-  params: Promise<{ slug?: string[] }>;
-};
-
-export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = await props.params;
-  const path = params.slug?.join("/") || "";
-  const slug = nextSlugToWpSlug(path);
-
-  // CRITICAL FIX: Stop 404 crash immediately
-  if (slug === "_not-found" || slug === "404") {
-    return { title: "Page Not Found" };
+const PAGE_QUERY = gql`
+  query PageQuery($uri: ID!) {
+    contentNode(id: $uri, idType: URI) {
+      ... on Page {
+        id
+        title
+        content
+        seo {
+          fullHead
+          title
+          metaDesc
+        }
+      }
+    }
   }
+`;
 
-  const isPreview = slug.includes("preview");
-
-  const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
-    print(SeoQuery),
-    {
-      slug: isPreview ? slug.split("preview/")[1] : slug,
-      idType: isPreview ? "DATABASE_ID" : "URI",
-    },
+export async function generateMetadata({ params }: { params: any }): Promise<Metadata> {
+  const slug = (await params).slug;
+  const uri = `/${slug.join("/")}/`;
+  
+  const { contentNode } = await fetchGraphQL<{ contentNode: any }>(
+    print(PAGE_QUERY),
+    { uri }
   );
 
-  // CRITICAL FIX: Return default metadata instead of crashing
-  if (!contentNode) {
-    return { title: "Page Not Found" };
-  }
-
-  const metadata = setSeoData({ seo: contentNode.seo });
-
-  return {
-    ...metadata,
-    alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_BASE_URL}${slug}`,
-    },
-  } as Metadata;
+  if (!contentNode) return { title: "Page Not Found" };
+  return setSeoData({ seo: contentNode.seo });
 }
 
-export function generateStaticParams() {
-  return [];
-}
+export default async function Page({ params }: { params: any }) {
+  const slug = (await params).slug;
+  const uri = `/${slug.join("/")}/`;
 
-export default async function Page(props: Props) {
-  const params = await props.params;
-  const path = params.slug?.join("/") || "";
-  const slug = nextSlugToWpSlug(path);
-
-  const isPreview = slug.includes("preview");
-  const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
-    print(ContentInfoQuery),
-    {
-      slug: isPreview ? slug.split("preview/")[1] : slug,
-      idType: isPreview ? "DATABASE_ID" : "URI",
-    },
+  const { contentNode } = await fetchGraphQL<{ contentNode: any }>(
+    print(PAGE_QUERY),
+    { uri }
   );
 
   if (!contentNode) return notFound();
 
-  switch (contentNode.contentTypeName) {
-    case "page":
-      return <PageTemplate node={contentNode} />;
-    case "post":
-      return <PostTemplate node={contentNode} />;
-    default:
-      return <p>{contentNode.contentTypeName} not implemented</p>;
-  }
+  return (
+    <main className="container mx-auto py-10 px-5">
+      <h1 className="text-4xl font-bold mb-6">{contentNode.title}</h1>
+      <div 
+        className="prose max-w-none"
+        dangerouslySetInnerHTML={{ __html: contentNode.content }} 
+      />
+    </main>
+  );
 }
