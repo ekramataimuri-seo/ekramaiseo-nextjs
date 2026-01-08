@@ -147,8 +147,10 @@ button { border: none; background: none; cursor: pointer; }
     visibility: hidden;
     transition: all 0.3s ease;
     z-index: 999;
-    overflow: hidden;
-    background-color: #fff; /* Ensure white background */
+    background-color: #fff;
+    overflow: visible;         /* Was 'hidden'. Set to visible or auto */
+    overflow-y: auto;          /* Allow vertical scrolling */
+    max-height: calc(100vh - 100px); /* Stop before hitting bottom of screen */
 }
 
 .mega-menu::before {
