@@ -1,571 +1,312 @@
-<style>
+/* --- General Reset --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* --- General Reset --- */
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    
-
-    body {
-
-        font-family: Roboto Flex, sans-serif;
-
-font-size: 16px;
-
+body {
+    font-family: Roboto Flex, sans-serif;
+    font-size: 16px;
     font-weight: 400;
-
     line-height: 1.5;
-
-        color: #263A5F;
-    }
-
-
-
-    a { text-decoration: none; color: inherit; }
-
-    ul { list-style: none; }
-
-    button { border: none; background: none; cursor: pointer; }
-
-
-
-    /* --- Global Layout Containers --- */
-
-    .top-info-content, .nav-content-wrapper {
-
-        margin: 0 auto;
-
-        padding: 0 24px;
-
-        max-width: 1400px;
-
-    }
-
-
-
-    /* --- STICKY HEADER --- */
-
-    #ekrama-header-gif-style {
-
-        position: sticky;
-
-        top: 0;
-
-        width: 100%;
-
-        background-color: #ffffff;
-
-        z-index: 1000;
-
-        /* Removed box-shadow as requested */
-
-        box-shadow: none; 
-
-        border-bottom: none;
-
-    }
-
-
-
-    /* --- TOP INFO BAR --- */
-
-    .top-info-bar {
-
-        background-color: #263A5F; /* Dark Blue */
-
-        padding: 8px 0;
-
-        font-size: 10px;
-
-        font-weight: 500;
-
-        color: #ffffff; /* White Text */
-
-        border-bottom: none; /* Removed line */
-
-    }
-
-    .top-info-content {
-
-        display: flex;
-
-        justify-content: space-between;
-
-        align-items: center;
-
-    }
-
-    /* Adjusted colors for dark background */
-
-    .revenue-driven .label { color: rgba(255,255,255,0.9); }
-
-    .revenue-driven .value { color: #41D48C; font-weight: 700; margin-left: 5px; } /* Green pops on dark */
-
-    .info-icon { color: rgba(255,255,255,0.7); }
-
-    
-
-    .contact-info .phone-number { color: #ffffff; font-weight: 700; }
-
-    .contact-info .client-login {
-
-        border-right: 1px solid rgba(255,255,255,0.3);
-
-        padding-right: 15px;
-
-        margin-right: 15px;
-
-        color: #ffffff;
-
-    }
-
-
-
-    /* --- MAIN NAV BAR --- */
-
-    .nav-content-wrapper {
-
-        display: flex;
-
-        align-items: center;
-
-        height: 70px;
-
-        position: relative; 
-
-    }
-
-
-
-    .logo-brand {
-
-        display: flex;
-
-        flex-direction: column;
-
-        line-height: 1.1;
-
-        margin-right: 40px;
-
-        min-width: 180px;
-
-        z-index: 1001;
-
-    }
-
-    .logo-text { font-size: 24px; font-weight: 900; color: #263A5F; }
-
-    .tagline { font-size: 10px; font-weight: 500; color: #888; letter-spacing: 0.5px; }
-
-
-
-    /* --- Navigatio	n Links (Desktop) --- */
-
-    .nav {
-
-        display: flex;
-
-        align-items: center;
-
-        height: 100%;
-
-    }
-
-    .nav > li {
-
-        height: 100%;
-
-        display: flex;
-
-        align-items: center;
-
-        padding: 0 15px;
-
-        cursor: pointer;
-
-        position: static;
-
-    }
-
-/* Update this existing class */
+    color: #263A5F;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { border: none; background: none; cursor: pointer; }
+
+/* --- Global Layout Containers --- */
+.top-info-content, .nav-content-wrapper {
+    margin: 0 auto;
+    padding: 0 24px;
+    max-width: 1400px;
+}
+
+/* --- STICKY HEADER --- */
+#ekrama-header-gif-style {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 1000;
+    box-shadow: none; 
+    border-bottom: none;
+}
+
+/* --- TOP INFO BAR --- */
+.top-info-bar {
+    background-color: #263A5F;
+    padding: 8px 0;
+    font-size: 10px;
+    font-weight: 500;
+    color: #ffffff;
+    border-bottom: none;
+}
+
+.top-info-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.revenue-driven .label { color: rgba(255,255,255,0.9); }
+.revenue-driven .value { color: #41D48C; font-weight: 700; margin-left: 5px; }
+.info-icon { color: rgba(255,255,255,0.7); }
+
+.contact-info .phone-number { color: #ffffff; font-weight: 700; }
+.contact-info .client-login {
+    border-right: 1px solid rgba(255,255,255,0.3);
+    padding-right: 15px;
+    margin-right: 15px;
+    color: #ffffff;
+}
+
+/* --- MAIN NAV BAR --- */
+.nav-content-wrapper {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    position: relative; 
+}
+
+.logo-brand {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    margin-right: 40px;
+    min-width: 180px;
+    z-index: 1001;
+}
+
+.logo-text { font-size: 24px; font-weight: 900; color: #263A5F; }
+.tagline { font-size: 10px; font-weight: 500; color: #888; letter-spacing: 0.5px; }
+
+/* --- Navigation Links (Desktop) --- */
+.nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.nav > li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+    position: static;
+}
 
 .nav > li > a {
-
-   font-family: 'Roboto Flex', sans-serif;
-
+    font-family: 'Roboto Flex', sans-serif;
     font-size: 16px;
-
     font-weight: 400;
-
     color: #263A5F; 
-line-height: 1.6;
+    line-height: 1.6;
     transition: color 0.2s;
-
     padding: 0 15px;
-
     text-decoration: none;
     display: flex;
-align-items: center;
+    align-items: center;
     gap: 8px;
-
 }
 
-
-
-/* NEW: Style for the Arrow Icon */
-
+/* Arrow Icon */
 .nav-arrow {
-
-    font-size: 11px; /* Smaller than the text */
-
-    color: #889bb0;  /* Subtle color */
-
-    transition: transform 0.3s ease; /* Smooth rotation */
-
+    font-size: 11px;
+    color: #889bb0;
+    transition: transform 0.3s ease;
 }
-
-
-
-/* NEW: Rotate the arrow when hovering the list item */
 
 .nav > li:hover .nav-arrow {
-
-    transform: rotate(180deg); /* Flips the arrow up */
-
-    color: #207DE9; /* Turns blue on hover */
-
+    transform: rotate(180deg);
+    color: #207DE9;
 }
 
-
-
-/* Desktop Hover Text Color Update */
-
 @media (min-width: 1025px) {
-
     .nav > li:hover > a {
-
         color: #207DE9;
-
         border-bottom-color: #207DE9;
-
     }
-
 }
 
-    /* Desktop Hover */
+/* --- MEGA MENU --- */
+.mega-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    width: 98vw;            
+    max-width: 1250px;      
+    padding: 30px;          
+    border: 0px solid #eaeaea;
+    border-radius: 4px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1); 
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;              
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+    overflow: hidden;
+    background-color: #fff; /* Ensure white background */
+}
 
-    @media (min-width: 1025px) {
+.mega-menu::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(244, 249, 255, 0.85), rgba(244, 249, 255, 0.85)), 
+                url('https://ekramaiseo.com/wp-content/uploads/2025/12/SEO-Doodle-ekrama-SEO-Real-Estate.webp');
+    background-size: contain;
+    background-position: center;
+    background-repeat: repeat;
+    z-index: -1;
+}
 
-        .nav > li:hover > a {
-
-            color: #207DE9;
-
-            border-bottom-color: #207DE9;
-
-        }
-
-    }
-
-
-       /* =========================================
-           1. MEGA MENU & DOODLE BACKGROUND
-        ========================================= */
-        .mega-menu {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%) translateY(10px);
-            width: 98vw;            
-            max-width: 1250px;      
-            padding: 30px;          
-            border: 0px solid #eaeaea;
-            border-radius: 4px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1); 
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 20px;              
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 999;
-            overflow: hidden;
-        }
-
-        .mega-menu::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(244, 249, 255, 0.85), rgba(244, 249, 255, 0.85)), 
-                        url('https://ekramaiseo.com/wp-content/uploads/2025/12/SEO-Doodle-ekrama-SEO-Real-Estate.webp');
-            background-size: contain;
-            background-position: center;
-            background-repeat: repeat;
-            z-index: -1;
-        }
-
-        .nav > li:hover .mega-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-
-/* Show on Hover (Desktop Only) */
+.nav > li:hover .mega-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 
 @media (min-width: 1025px) {
-
     .nav > li:hover .mega-menu {
-
         opacity: 1;
-
         visibility: visible;
-
         transform: translateX(-50%) translateY(0);
-
     }
-
 }
 
-
-
-/* =========================================
-
-   2. COLUMN CARD STYLING (Inner Cards)
-
-   ========================================= */
-
+/* --- COLUMNS & CARDS --- */
 .menu-column-list, 
-
 .menu-column-card {
-
     background: #fff;                 
-
-    border: 0px solid #e5e7eb;        /* Border for columns */
-
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Shadow for columns */
-
+    border: 0px solid #e5e7eb;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     border-radius: 4px;
-
     padding: 25px;
-
     height: 100%;                     
-
     overflow: hidden;
-
     display: flex;
-
     flex-direction: column;
-
-            transition: all 0.3s ease;
-
+    transition: all 0.3s ease;
 }
-
-
 
 .menu-column-list:hover,
-
 .menu-column-card:hover {
-
     transform: translateY(-5px);
-
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-
     border-color: #d1d5db;
-
 }
-
-
-
-/* =========================================
-
-   3. COLUMN 1: LINK LIST
-
-   ========================================= */
 
 .menu-header {
-
     font-size: 25px;
-
     font-weight: 800;
-
     margin-bottom: 25px;
-
     display: flex;
-
     align-items: center;
-
     gap: 10px;
-
     color: #333;
-
 }
-
 .menu-header i { color: #207DE9; }
 
-
-
 .link-list a {
-
     display: block;
-
     padding: 12px 0;
-
     color: #555;
-
     font-size: 14px;
-
     font-weight: 500;
-
     transition: 0.2s;
-
     text-decoration: none;
-
 }
 
 .link-list a:hover { 
-
     color: #207DE9; 
-
     padding-left: 5px; 
-
     border-bottom-color: #ddd;
-
 }
 
-
-
-/* =========================================
-
-   4. COLUMN 2 & 3: CONTENT CARDS
-
-   ========================================= */
-
-.menu-column-card {
-
-    justify-content: space-between; 
-
-}
-
-
-
-/* Heading with DIVIDING LINE below it */
+.menu-column-card { justify-content: space-between; }
 
 .card-content h3 {
-
     font-size: 18px; 
-
     font-weight: 800; 
-
     margin-bottom: 15px; 
-
     line-height: 1.4;
-
     padding-bottom: 15px;       
-
-    border-bottom: 2px solid;   /* Color defined in Themes below */
-
+    border-bottom: 2px solid;
 }
 
 .card-content h4 {
-
     font-size: 14px; 
-
     font-weight: 600; 
-
     margin-bottom: 15px; 
-
     padding-bottom: 12px;       
-
-    text-align: center;      /* Aligns the text to the center */
-
-
-
+    text-align: center;
 }
-
-
-
-
 
 .card-content p {
-
     font-size: 13px; 
-
     color: #4a5568; 
-
     margin-bottom: 10px; 
-
 }
-
-
 
 .section-icon { 
-
     font-size: 32px; 
-
     margin-bottom: 15px; 
-
     display: inline-block; 
-
 }
-        /* Forward Arrow on Hover */
-        .link-list a::after {
-            content: '\f061';
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            font-size: 11px;
-            color: #207DE9;
-            margin-left: 10px;
-            opacity: 0;
-            transform: translateX(-5px);
-            transition: 0.3s;
-        }
-        .link-list a:hover { color: #207DE9; padding-left: 5px; }
-        .link-list a:hover::after { opacity: 1; transform: translateX(0); }
 
+/* Forward Arrow on Hover */
+.link-list a::after {
+    content: '\f061';
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 11px;
+    color: #207DE9;
+    margin-left: 10px;
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: 0.3s;
+}
+.link-list a:hover { color: #207DE9; padding-left: 5px; }
+.link-list a:hover::after { opacity: 1; transform: translateX(0); }
 
-
-/* =========================================
-   5. THEMES (Colors & Lines)
-   ========================================= */
-
+/* --- THEMES --- */
 /* Menu 1: Real Estate + SEO (Blue) */
-.nav > li:nth-child(1) .mega-menu > a:nth-child(2) { background: rgba(215, 240, 255, 0.7) !important; } /* Light Blue for SEO */
-.nav > li:nth-child(1) .mega-menu > a:nth-child(2) h3 { color: #1E40AF; border-bottom-color: #1E40AF; } /* Darker Blue for SEO */
-.nav > li:nth-child(1) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; } /* Slightly darker blue for Real Estate */
-.nav > li:nth-child(1) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; } /* Medium Blue for Real Estate */
+.nav > li:nth-child(1) .mega-menu > a:nth-child(2) { background: rgba(215, 240, 255, 0.7) !important; }
+.nav > li:nth-child(1) .mega-menu > a:nth-child(2) h3 { color: #1E40AF; border-bottom-color: #1E40AF; }
+.nav > li:nth-child(1) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; }
+.nav > li:nth-child(1) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; }
 
-/* Menu 2: Content Marketing + Real Estate (Blue) */
-.nav > li:nth-child(2) .mega-menu > a:nth-child(2) { background: rgba(210, 230, 255, 0.7) !important; } /* Light Blue for Content Marketing */
-.nav > li:nth-child(2) .mega-menu > a:nth-child(2) h3 { color: #1D4ED8; border-bottom-color: #1D4ED8; } /* Dark Blue for Content Marketing */
-.nav > li:nth-child(2) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; } /* Slightly darker blue for Real Estate */
-.nav > li:nth-child(2) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; } /* Medium Blue for Real Estate */
+/* Menu 2: Content Marketing */
+.nav > li:nth-child(2) .mega-menu > a:nth-child(2) { background: rgba(210, 230, 255, 0.7) !important; }
+.nav > li:nth-child(2) .mega-menu > a:nth-child(2) h3 { color: #1D4ED8; border-bottom-color: #1D4ED8; }
+.nav > li:nth-child(2) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; }
+.nav > li:nth-child(2) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; }
 
-/* Menu 3: WordPress Front End + Real Estate (Blue) */
-.nav > li:nth-child(3) .mega-menu > a:nth-child(2) { background: rgba(230, 245, 255, 0.7) !important; } /* Light Blue for WordPress */
-.nav > li:nth-child(3) .mega-menu > a:nth-child(2) h3 { color: #1E40AF; border-bottom-color: #1E40AF; } /* Darker Blue for WordPress */
-.nav > li:nth-child(3) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; } /* Slightly darker blue for Real Estate */
-.nav > li:nth-child(3) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; } /* Medium Blue for Real Estate */
+/* Menu 3: WordPress */
+.nav > li:nth-child(3) .mega-menu > a:nth-child(2) { background: rgba(230, 245, 255, 0.7) !important; }
+.nav > li:nth-child(3) .mega-menu > a:nth-child(2) h3 { color: #1E40AF; border-bottom-color: #1E40AF; }
+.nav > li:nth-child(3) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; }
+.nav > li:nth-child(3) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; }
 
-/* Menu 4: Location + Real Estate (Blue) */
-.nav > li:nth-child(4) .mega-menu > a:nth-child(2) { background: rgba(215, 240, 255, 0.7) !important; } /* Light Blue for Location */
-.nav > li:nth-child(4) .mega-menu > a:nth-child(2) h3 { color: #1D4ED8; border-bottom-color: #1D4ED8; } /* Dark Blue for Location */
-.nav > li:nth-child(4) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; } /* Slightly darker blue for Real Estate */
-.nav > li:nth-child(4) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; } /* Medium Blue for Real Estate */
+/* Menu 4: Location */
+.nav > li:nth-child(4) .mega-menu > a:nth-child(2) { background: rgba(215, 240, 255, 0.7) !important; }
+.nav > li:nth-child(4) .mega-menu > a:nth-child(2) h3 { color: #1D4ED8; border-bottom-color: #1D4ED8; }
+.nav > li:nth-child(4) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; }
+.nav > li:nth-child(4) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; }
 
-/* Menu 5: About Me + Real Estate (Blue) */
-.nav > li:nth-child(5) .mega-menu > a:nth-child(2) { background: rgba(220, 245, 255, 0.7) !important; } /* Light Blue for About Me */
-.nav > li:nth-child(5) .mega-menu > a:nth-child(2) h3 { color: #1E40AF; border-bottom-color: #1E40AF; } /* Dark Blue for About Me */
-.nav > li:nth-child(5) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; } /* Slightly darker blue for Real Estate */
-.nav > li:nth-child(5) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; } /* Medium Blue for Real Estate */
+/* Menu 5: About Me */
+.nav > li:nth-child(5) .mega-menu > a:nth-child(2) { background: rgba(220, 245, 255, 0.7) !important; }
+.nav > li:nth-child(5) .mega-menu > a:nth-child(2) h3 { color: #1E40AF; border-bottom-color: #1E40AF; }
+.nav > li:nth-child(5) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; }
+.nav > li:nth-child(5) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; }
 
-
-/* =========================================
-   6. CTA LINK BARS (FIXED)
-   ========================================= */
-
-/* Common Button Style */
+/* --- CTA BUTTONS --- */
 .btn-blue, .btn-orange, 
 .nav > li .mega-menu .btn-blue, 
 .nav > li .mega-menu .btn-orange {
     display: block;
     width: 100%;
     padding: 12px 0;
-    margin-top: auto; /* Pushes button to bottom of card */
+    margin-top: auto; 
     border-radius: 4px;
     font-weight: 700;
     font-size: 14px;
@@ -574,386 +315,146 @@ align-items: center;
     transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Real Estate + SEO (Menu 1) Blue */
-.nav > li:nth-child(1) .btn-blue { background-color: #1D4ED8; color: #fff; } /* Dark Blue */
-.nav > li:nth-child(1) .btn-orange { background-color: #3B82F6; color: #fff; } /* Medium Blue */
+/* Colors for buttons */
+.nav > li:nth-child(1) .btn-blue { background-color: #1D4ED8; color: #fff; }
+.nav > li:nth-child(1) .btn-orange { background-color: #3B82F6; color: #fff; }
+.nav > li:nth-child(2) .btn-blue { background-color: #1D4ED8; color: #fff; }
+.nav > li:nth-child(2) .btn-orange { background-color: #3B82F6; color: #fff; }
+.nav > li:nth-child(3) .btn-blue { background-color: #1D4ED8; color: #fff; }
+.nav > li:nth-child(3) .btn-orange { background-color: #3B82F6; color: #fff; }
+.nav > li:nth-child(4) .btn-blue { background-color: #1D4ED8; color: #fff; }
+.nav > li:nth-child(4) .btn-orange { background-color: #3B82F6; color: #fff; }
+.nav > li:nth-child(5) .btn-blue { background-color: #1D4ED8; color: #fff; }
+.nav > li:nth-child(5) .btn-orange { background-color: #3B82F6; color: #fff; }
 
-/* Content Marketing + Real Estate (Menu 2) Blue */
-.nav > li:nth-child(2) .btn-blue { background-color: #1D4ED8; color: #fff; } /* Dark Blue */
-.nav > li:nth-child(2) .btn-orange { background-color: #3B82F6; color: #fff; } /* Medium Blue */
-
-/* WordPress Front End + Real Estate (Menu 3) Blue */
-.nav > li:nth-child(3) .btn-blue { background-color: #1D4ED8; color: #fff; } /* Dark Blue */
-.nav > li:nth-child(3) .btn-orange { background-color: #3B82F6; color: #fff; } /* Medium Blue */
-
-/* Location + Real Estate (Menu 4) Blue */
-.nav > li:nth-child(4) .btn-blue { background-color: #1D4ED8; color: #fff; } /* Dark Blue */
-.nav > li:nth-child(4) .btn-orange { background-color: #3B82F6; color: #fff; } /* Medium Blue */
-
-/* About Me + Real Estate (Menu 5) Blue */
-.nav > li:nth-child(5) .btn-blue { background-color: #1D4ED8; color: #fff; } /* Dark Blue */
-.nav > li:nth-child(5) .btn-orange { background-color: #3B82F6; color: #fff; } /* Medium Blue */
-
-/* Global Button Hover Effect */
 .btn-blue:hover, .btn-orange:hover {
     filter: brightness(0.9);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* =========================================
-
-   6. MAIN NAV BUTTON ("Get a Proposal")
-
-   ========================================= */
-
 .cta-button-nav {
-
     margin-left: auto;
-
-    background-color: #41D48C !important; /* Force Green */
-
+    background-color: #41D48C !important; 
     color: #fff !important;
-
     padding: 10px 24px;
-
     border-radius: 4px;
-
     font-weight: 700;
-
     font-size: 14px;
-
     white-space: nowrap;
-
     text-decoration: none;
-
     display: inline-block;
-
-    border: none; /* Removes default browser borders */
-
+    border: none;
 }
-
-
 
 .cta-button-nav:hover { 
-
     background-color: #36b575 !important; 
-
     color: #fff !important;
-
 }
 
-    /* =========================================
-
-       NEW MOBILE MENU STYLES
-
-       ========================================= */
-
-    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 1001; margin-left: auto; }
-
-    .hamburger span { width: 25px; height: 3px; background-color: #263A5F; border-radius: 2px; transition: 0.3s; }
-
-    
-
-    /* Hamburger Animation when Active */
-
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
-
-    .hamburger.active span:nth-child(2) { opacity: 0; }
-
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
-
-
-
-    .mobile-nav-container {
-
-        display: none; /* Hidden on Desktop */
-
-        position: fixed;
-
-        /* Adjusted top to match new header height (Top bar 35px + Header 70px approx) */
-
-        top: 105px; 
-
-        left: 0;
-
-        width: 100%;
-
-        height: calc(100vh - 105px);
-
-        background: #ffffff; /* White background as requested (same as desktop) */
-
-        overflow-y: auto;
-
-        padding-bottom: 40px;
-
-        transform: translateX(100%);
-
-        transition: transform 0.3s ease;
-
-        z-index: 998;
-
-        border-top: 1px solid #eee;
-
-    }
-
-
-
-    .mobile-nav-container.active {
-
-        transform: translateX(0);
-
-    }
-
-
-
-    /* Accordion Styles */
-
-    .mobile-accordion-item {
-
-        /* No border bottom as requested */
-
-        border: none;
-
-        margin-bottom: 5px;
-
-    }
-
-
-
-    .mobile-accordion-header {
-
-        display: flex;
-
-        justify-content: space-between;
-
-        align-items: center;
-
-        padding: 15px 24px;
-
-        color: #263A5F; /* Dark Blue Text */
-
-        font-weight: 700;
-
-        font-size: 16px;
-
-        cursor: pointer;
-
-        transition: color 0.2s;
-
-        /* Transparent background */
-
-        background-color: transparent; 
-
-    }
-
-    
-
-    .mobile-accordion-header i {
-
-        font-size: 14px;
-
-        transition: transform 0.3s;
-
-        color: #263A5F;
-
-    }
-
-    
-
-    .mobile-accordion-header.active {
-
-        color: #207DE9; /* Active Color */
-
-    }
-
-    .mobile-accordion-header.active i {
-
-        transform: rotate(180deg);
-
-        color: #207DE9;
-
-    }
-
-
-
-    .mobile-accordion-content {
-
-        max-height: 0;
-
-        overflow: hidden;
-
-        transition: max-height 0.3s ease;
-
-        background-color: transparent; /* No background */
-
-        padding-left: 10px;
-
-    }
-
-    
-
-    .mobile-link {
-
-        display: block;
-
-        padding: 10px 24px 10px 30px;
-
-        color: #555;
-
-        font-size: 14px;
-
-        font-weight: 500;
-
-        /* No borders */
-
-        border: none;
-
-    }
-
-    .mobile-link:hover {
-
-        color: #207DE9;
-
-        padding-left: 35px;
-
-    }
-
-
-
-    /* Mobile CTA */
-
-    .mobile-cta-wrapper {
-
-        padding: 24px;
-
-        text-align: center;
-
-    }
-
-    .mobile-btn {
-
-        display: block;
-
-        width: 100%;
-
-        background-color: #41D48C;
-
-        color: #fff;
-
-        padding: 14px;
-
-        border-radius: 4px;
-
-        font-weight: 700;
-
-        margin-top: 10px;
-
-    }
-
-
-
-    /* --- RESPONSIVE MEDIA QUERY --- */
-
-    @media (max-width: 1024px) {
-
-        /* Keeping top info bar visible but updated colors */
-
-        .mobile-nav-container { display: block; } /* Allow it to be visible (controlled by class) */
-
-        
-
-        .hamburger { display: flex; }
-
-        .nav { display: none; } /* Hide Desktop Nav */
-
-        .cta-button-nav { display: none; } /* Hide Desktop CTA */
-
-    }
-
-/* =========================================
-
-   SLIDE DOWN ANIMATION STYLES
-
-   ========================================= */
-
-
-
-/* The animation keyframes */
-
+/* --- MOBILE MENU --- */
+.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 1001; margin-left: auto; }
+.hamburger span { width: 25px; height: 3px; background-color: #263A5F; border-radius: 2px; transition: 0.3s; }
+
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+.mobile-nav-container {
+    display: none; 
+    position: fixed;
+    top: 105px; 
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 105px);
+    background: #ffffff; 
+    overflow-y: auto;
+    padding-bottom: 40px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 998;
+    border-top: 1px solid #eee;
+}
+
+.mobile-nav-container.active { transform: translateX(0); }
+
+.mobile-accordion-item { border: none; margin-bottom: 5px; }
+
+.mobile-accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 24px;
+    color: #263A5F; 
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.2s;
+    background-color: transparent; 
+}
+
+.mobile-accordion-header i {
+    font-size: 14px;
+    transition: transform 0.3s;
+    color: #263A5F;
+}
+
+.mobile-accordion-header.active { color: #207DE9; }
+.mobile-accordion-header.active i { transform: rotate(180deg); color: #207DE9; }
+
+.mobile-accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: transparent; 
+    padding-left: 10px;
+}
+
+.mobile-link {
+    display: block;
+    padding: 10px 24px 10px 30px;
+    color: #555;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+}
+.mobile-link:hover { color: #207DE9; padding-left: 35px; }
+
+.mobile-cta-wrapper { padding: 24px; text-align: center; }
+.mobile-btn {
+    display: block;
+    width: 100%;
+    background-color: #41D48C;
+    color: #fff;
+    padding: 14px;
+    border-radius: 4px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+@media (max-width: 1024px) {
+    .mobile-nav-container { display: block; } 
+    .hamburger { display: flex; }
+    .nav { display: none; } 
+    .cta-button-nav { display: none; } 
+}
+
+/* --- ANIMATIONS --- */
 @keyframes slideDownFade {
-
-    0% {
-
-        transform: translateY(-100%);
-
-        opacity: 0;
-
-    }
-
-    100% {
-
-        transform: translateY(0);
-
-        opacity: 1;
-
-    }
-
+    0% { transform: translateY(-100%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
 }
-
-
-
-/* This class is added via JavaScript when scrolling */
 
 .header-scrolled {
-
-    position: fixed !important; /* Force fixed to float over content */
-
+    position: fixed !important; 
     top: 0;
-
     left: 0;
-
     width: 100%;
-
     background-color: #ffffff;
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important; /* Add shadow when stuck */
-
-    animation: slideDownFade 0.4s ease-out forwards; /* The slide effect */
-
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important; 
+    animation: slideDownFade 0.4s ease-out forwards; 
     z-index: 1000;
-
     padding-bottom: 0;
-
 }
 
-
-
-/* Optional: Hide the dark blue Top Info Bar when scrolled 
-
-   to make the bar sleeker */
-
-.header-scrolled .top-info-bar {
-
-    display: none;
-
-}
-
-
-
-/* Ensure the layout doesn't jump when header becomes fixed */
-
-body {
-
-    padding-top: 0; 
-
-    transition: padding-top 0.3s;
-
-}
-
-
-
-/* When header is fixed, we might need to push body content down 
-
-   (Handled in JS) */
-
-</style>
+.header-scrolled .top-info-bar { display: none; }
+body { padding-top: 0; transition: padding-top 0.3s; }
