@@ -3,8 +3,8 @@
 
 body {
     font-family: 'Roboto Flex', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 400;
     line-height: 1.5;
     color: #000000;
 }
@@ -99,9 +99,9 @@ button { border: none; background: none; cursor: pointer; }
 .nav > li > a {
     font-family: 'Roboto Flex', sans-serif;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 600;
     line-height: 1.5;
-    color: #263A5F;
+    color: #000000;
 }
 
 /* --- HOVER EFFECT: The Connected Tab --- */
