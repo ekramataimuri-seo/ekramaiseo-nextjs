@@ -1,1593 +1,267 @@
-<meta charset="UTF-8">
+/* =========================================
+   1. GLOBAL RESETS & FONTS
+   ========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Ekramaiseo Mega Menu</title>
-
-<style>
-
-    /* --- General Reset --- */
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    
-
-    body {
-
-        font-family: Roboto Flex, sans-serif;
-
-font-size: 16px;
-
+body {
+    font-family: 'Roboto Flex', sans-serif;
+    font-size: 16px;
     font-weight: 400;
-
     line-height: 1.5;
+    color: #263A5F;
+}
 
-        color: #263A5F;
-    }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { border: none; background: none; cursor: pointer; }
 
-
-
-    a { text-decoration: none; color: inherit; }
-
-    ul { list-style: none; }
-
-    button { border: none; background: none; cursor: pointer; }
-
-
-
-    /* --- Global Layout Containers --- */
-
-    .top-info-content, .nav-content-wrapper {
-
-        margin: 0 auto;
-
-        padding: 0 24px;
-
-        max-width: 1400px;
-
-    }
-
-
-
-    /* --- STICKY HEADER --- */
-
-    #ekrama-header-gif-style {
-
-        position: sticky;
-
-        top: 0;
-
-        width: 100%;
-
-        background-color: #ffffff;
-
-        z-index: 1000;
-
-        /* Removed box-shadow as requested */
-
-        box-shadow: none; 
-
-        border-bottom: none;
-
-    }
-
-
-
-    /* --- TOP INFO BAR --- */
-
-    .top-info-bar {
-
-        background-color: #263A5F; /* Dark Blue */
-
-        padding: 8px 0;
-
-        font-size: 10px;
-
-        font-weight: 500;
-
-        color: #ffffff; /* White Text */
-
-        border-bottom: none; /* Removed line */
-
-    }
-
-    .top-info-content {
-
-        display: flex;
-
-        justify-content: space-between;
-
-        align-items: center;
-
-    }
-
-    /* Adjusted colors for dark background */
-
-    .revenue-driven .label { color: rgba(255,255,255,0.9); }
-
-    .revenue-driven .value { color: #41D48C; font-weight: 700; margin-left: 5px; } /* Green pops on dark */
-
-    .info-icon { color: rgba(255,255,255,0.7); }
-
+/* =========================================
+   2. HEADER CONTAINER (The "Cut Off" Fix)
+   ========================================= */
+#ekrama-header-gif-style {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 9999; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     
+    /* NUCLEAR FIX: Allows the dropdown to spill out of the header */
+    overflow: visible !important; 
+}
 
-    .contact-info .phone-number { color: #ffffff; font-weight: 700; }
+/* Container for logo and nav */
+.nav-content-wrapper {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    position: relative; /* This acts as the anchor for the dropdown */
+    margin: 0 auto;
+    padding: 0 24px;
+    max-width: 1400px;
+    
+    /* NUCLEAR FIX: Prevents clipping */
+    overflow: visible !important; 
+}
 
-    .contact-info .client-login {
+/* =========================================
+   3. NAVIGATION LINKS (The "Wrapping" Fix)
+   ========================================= */
+.nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
 
-        border-right: 1px solid rgba(255,255,255,0.3);
-
-        padding-right: 15px;
-
-        margin-right: 15px;
-
-        color: #ffffff;
-
-    }
-
-
-
-    /* --- MAIN NAV BAR --- */
-
-    .nav-content-wrapper {
-
-        display: flex;
-
-        align-items: center;
-
-        height: 70px;
-
-        position: relative; 
-
-    }
-
-
-
-    .logo-brand {
-
-        display: flex;
-
-        flex-direction: column;
-
-        line-height: 1.1;
-
-        margin-right: 40px;
-
-        min-width: 180px;
-
-        z-index: 1001;
-
-    }
-
-    .logo-text { font-size: 24px; font-weight: 900; color: #263A5F; }
-
-    .tagline { font-size: 10px; font-weight: 500; color: #888; letter-spacing: 0.5px; }
-
-
-
-    /* --- Navigatio	n Links (Desktop) --- */
-
-    .nav {
-
-        display: flex;
-
-        align-items: center;
-
-        height: 100%;
-
-    }
-
-    .nav > li {
-
-        height: 100%;
-
-        display: flex;
-
-        align-items: center;
-
-        padding: 0 15px;
-
-        cursor: pointer;
-
-        position: static;
-
-    }
-
-/* Update this existing class */
+.nav > li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    cursor: pointer;
+    position: static; /* Required for the Mega Menu to go full width */
+}
 
 .nav > li > a {
-
-   font-family: 'Roboto Flex', sans-serif;
-
-    font-size: 16px;
-
-    font-weight: 400;
-
+    font-family: 'Roboto Flex', sans-serif;
+    font-size: 15px; 
+    font-weight: 600;
     color: #263A5F; 
-line-height: 1.6;
+    line-height: 1.6;
     transition: color 0.2s;
-
-    padding: 0 15px;
-
     text-decoration: none;
     display: flex;
-align-items: center;
-    gap: 8px;
-
+    align-items: center;
+    gap: 6px;
+    
+    /* PREVENTS TEXT WRAPPING / OVERLAPPING */
+    white-space: nowrap !important; 
 }
 
-
-
-/* NEW: Style for the Arrow Icon */
-
+/* Arrow Icon */
 .nav-arrow {
-
-    font-size: 11px; /* Smaller than the text */
-
-    color: #889bb0;  /* Subtle color */
-
-    transition: transform 0.3s ease; /* Smooth rotation */
-
+    font-size: 11px;
+    color: #889bb0;
+    transition: transform 0.3s ease;
 }
-
-
-
-/* NEW: Rotate the arrow when hovering the list item */
 
 .nav > li:hover .nav-arrow {
-
-    transform: rotate(180deg); /* Flips the arrow up */
-
-    color: #207DE9; /* Turns blue on hover */
-
+    transform: rotate(180deg);
+    color: #207DE9;
 }
 
-
-
-/* Desktop Hover Text Color Update */
-
-@media (min-width: 1025px) {
-
-    .nav > li:hover > a {
-
-        color: #207DE9;
-
-        border-bottom-color: #207DE9;
-
-    }
-
-}
-
-    /* Desktop Hover */
-
-    @media (min-width: 1025px) {
-
-        .nav > li:hover > a {
-
-            color: #207DE9;
-
-            border-bottom-color: #207DE9;
-
-        }
-
-    }
-
-
-       /* =========================================
-           1. MEGA MENU & DOODLE BACKGROUND
-        ========================================= */
+/* =========================================
+   4. MEGA MENU DROPDOWN (The "Visibility" Fix)
+   ========================================= */
 .mega-menu {
-    /* 1. FORCE BREAKOUT: Use 'fixed' to escape the header clipping */
-    position: fixed;       
-    top: 70px;             /* Start exactly below your 70px header */
+    position: absolute;
+    top: 100%;              /* Starts exactly at the bottom of the nav bar */
     left: 50%;
     transform: translateX(-50%);
-    
-    /* 2. SIZING */
-    width: 98vw;            
+    width: 95vw;            
     max-width: 1250px;      
     padding: 30px;          
-    
-    /* 3. VISUALS */
     background-color: #fff;
-    border-radius: 0 0 4px 4px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.2); 
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15); 
     
-    /* 4. LAYOUT */
+    /* Layout */
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
     gap: 20px;              
     
-    /* 5. ANIMATION STATE */
+    /* Visibility States */
     opacity: 0;
     visibility: hidden;
-    transition: all 0.2s ease;
-    
-    /* 6. LAYERING & SCROLLING */
-    z-index: 99999;        /* Ultra high to sit on top of everything */
-    max-height: calc(100vh - 80px); /* Prevent it from being taller than screen */
-    overflow-y: auto;      /* Add scrollbar if content is too tall */
-}
-        .mega-menu::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(244, 249, 255, 0.85), rgba(244, 249, 255, 0.85)), 
-                        url('https://ekramaiseo.com/wp-content/uploads/2025/12/SEO-Doodle-ekrama-SEO-Real-Estate.webp');
-            background-size: contain;
-            background-position: center;
-            background-repeat: repeat;
-            z-index: -1;
-        }
+    transition: all 0.25s ease-out;
+    z-index: 10000; 
 
-        .nav > li:hover .mega-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-
-/* Show on Hover (Desktop Only) */
-
-@media (min-width: 1025px) {
-
-    .nav > li:hover .mega-menu {
-
-        opacity: 1;
-
-        visibility: visible;
-
-        transform: translateX(-50%) translateY(0);
-
-    }
-
+    /* SCROLL FIX: Prevents menu from being cut off at bottom of screen */
+    max-height: calc(100vh - 120px); 
+    overflow-y: auto; 
 }
 
+/* Background Image */
+.mega-menu::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(244, 249, 255, 0.92), rgba(244, 249, 255, 0.92)), 
+                url('/SEO-Doodle-ekrama-SEO-Real-Estate.webp');
+    background-size: cover;
+    z-index: -1;
+    pointer-events: none;
+}
 
+/* Show Menu on Hover */
+.nav > li:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
 
 /* =========================================
-
-   2. COLUMN CARD STYLING (Inner Cards)
-
+   5. LOGO & TOP BAR
    ========================================= */
-
-.menu-column-list, 
-
-.menu-column-card {
-
-    background: #fff;                 
-
-    border: 0px solid #e5e7eb;        /* Border for columns */
-
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Shadow for columns */
-
-    border-radius: 4px;
-
-    padding: 25px;
-
-    height: 100%;                     
-
-    overflow: hidden;
-
+.logo-brand {
     display: flex;
-
     flex-direction: column;
-
-            transition: all 0.3s ease;
-
+    margin-right: 30px;
+    min-width: 150px;
 }
+.logo-text { font-size: 24px; font-weight: 900; color: #263A5F; white-space: nowrap; }
+.tagline { font-size: 10px; font-weight: 500; color: #888; letter-spacing: 0.5px; white-space: nowrap; }
 
-
-
-.menu-column-list:hover,
-
-.menu-column-card:hover {
-
-    transform: translateY(-5px);
-
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-
-    border-color: #d1d5db;
-
+.top-info-bar {
+    background-color: #263A5F;
+    padding: 8px 0;
+    font-size: 11px;
+    font-weight: 500;
+    color: #ffffff;
 }
-
-
+.top-info-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 24px;
+    max-width: 1400px;
+}
+.revenue-driven .value { color: #41D48C; font-weight: 700; margin-left: 5px; }
+.contact-info .client-login {
+    border-right: 1px solid rgba(255,255,255,0.3);
+    padding-right: 15px;
+    margin-right: 15px;
+    color: #ffffff;
+}
+.contact-info .phone-number { color: #ffffff; font-weight: 700; }
 
 /* =========================================
-
-   3. COLUMN 1: LINK LIST
-
+   6. INNER MENU CARDS & COLUMNS
    ========================================= */
+.menu-column-list, .menu-column-card {
+    background: #fff;                 
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    height: 100%;                     
+    display: flex;
+    flex-direction: column;
+}
 
 .menu-header {
-
-    font-size: 25px;
-
+    font-size: 18px;
     font-weight: 800;
-
-    margin-bottom: 25px;
-
+    margin-bottom: 15px;
     display: flex;
-
     align-items: center;
-
     gap: 10px;
-
-    color: #333;
-
+    color: #263A5F;
 }
-
 .menu-header i { color: #207DE9; }
 
-
-
 .link-list a {
-
     display: block;
-
-    padding: 12px 0;
-
-    color: #555;
-
+    padding: 8px 0;
+    color: #4a5568;
     font-size: 14px;
-
     font-weight: 500;
-
     transition: 0.2s;
-
-    text-decoration: none;
-
 }
+.link-list a:hover { color: #207DE9; padding-left: 5px; }
 
-.link-list a:hover { 
+.card-content h3 { font-size: 16px; font-weight: 800; margin-bottom: 10px; border-bottom: 2px solid #f7fafc; padding-bottom: 10px; color: #263A5F; }
+.card-content p { font-size: 13px; color: #718096; margin-bottom: 15px; line-height: 1.5; }
 
-    color: #207DE9; 
-
-    padding-left: 5px; 
-
-    border-bottom-color: #ddd;
-
-}
-
-
-
-/* =========================================
-
-   4. COLUMN 2 & 3: CONTENT CARDS
-
-   ========================================= */
-
-.menu-column-card {
-
-    justify-content: space-between; 
-
-}
-
-
-
-/* Heading with DIVIDING LINE below it */
-
-.card-content h3 {
-
-    font-size: 18px; 
-
-    font-weight: 800; 
-
-    margin-bottom: 15px; 
-
-    line-height: 1.4;
-
-    padding-bottom: 15px;       
-
-    border-bottom: 2px solid;   /* Color defined in Themes below */
-
-}
-
-.card-content h4 {
-
-    font-size: 14px; 
-
-    font-weight: 600; 
-
-    margin-bottom: 15px; 
-
-    padding-bottom: 12px;       
-
-    text-align: center;      /* Aligns the text to the center */
-
-
-
-}
-
-
-
-
-
-.card-content p {
-
-    font-size: 13px; 
-
-    color: #4a5568; 
-
-    margin-bottom: 10px; 
-
-}
-
-
-
-.section-icon { 
-
-    font-size: 32px; 
-
-    margin-bottom: 15px; 
-
-    display: inline-block; 
-
-}
-        /* Forward Arrow on Hover */
-        .link-list a::after {
-            content: '\f061';
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            font-size: 11px;
-            color: #207DE9;
-            margin-left: 10px;
-            opacity: 0;
-            transform: translateX(-5px);
-            transition: 0.3s;
-        }
-        .link-list a:hover { color: #207DE9; padding-left: 5px; }
-        .link-list a:hover::after { opacity: 1; transform: translateX(0); }
-
-
-
-/* =========================================
-   5. THEMES (Colors & Lines)
-   ========================================= */
-
-/* Menu 1: Real Estate + SEO (Blue) */
-.nav > li:nth-child(1) .mega-menu > a:nth-child(2) { background: rgba(215, 240, 255, 0.7) !important; } /* Light Blue for SEO */
-.nav > li:nth-child(1) .mega-menu > a:nth-child(2) h3 { color: #1E40AF; border-bottom-color: #1E40AF; } /* Darker Blue for SEO */
-.nav > li:nth-child(1) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; } /* Slightly darker blue for Real Estate */
-.nav > li:nth-child(1) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; } /* Medium Blue for Real Estate */
-
-/* Menu 2: Content Marketing + Real Estate (Blue) */
-.nav > li:nth-child(2) .mega-menu > a:nth-child(2) { background: rgba(210, 230, 255, 0.7) !important; } /* Light Blue for Content Marketing */
-.nav > li:nth-child(2) .mega-menu > a:nth-child(2) h3 { color: #1D4ED8; border-bottom-color: #1D4ED8; } /* Dark Blue for Content Marketing */
-.nav > li:nth-child(2) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; } /* Slightly darker blue for Real Estate */
-.nav > li:nth-child(2) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; } /* Medium Blue for Real Estate */
-
-/* Menu 3: WordPress Front End + Real Estate (Blue) */
-.nav > li:nth-child(3) .mega-menu > a:nth-child(2) { background: rgba(230, 245, 255, 0.7) !important; } /* Light Blue for WordPress */
-.nav > li:nth-child(3) .mega-menu > a:nth-child(2) h3 { color: #1E40AF; border-bottom-color: #1E40AF; } /* Darker Blue for WordPress */
-.nav > li:nth-child(3) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; } /* Slightly darker blue for Real Estate */
-.nav > li:nth-child(3) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; } /* Medium Blue for Real Estate */
-
-/* Menu 4: Location + Real Estate (Blue) */
-.nav > li:nth-child(4) .mega-menu > a:nth-child(2) { background: rgba(215, 240, 255, 0.7) !important; } /* Light Blue for Location */
-.nav > li:nth-child(4) .mega-menu > a:nth-child(2) h3 { color: #1D4ED8; border-bottom-color: #1D4ED8; } /* Dark Blue for Location */
-.nav > li:nth-child(4) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; } /* Slightly darker blue for Real Estate */
-.nav > li:nth-child(4) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; } /* Medium Blue for Real Estate */
-
-/* Menu 5: About Me + Real Estate (Blue) */
-.nav > li:nth-child(5) .mega-menu > a:nth-child(2) { background: rgba(220, 245, 255, 0.7) !important; } /* Light Blue for About Me */
-.nav > li:nth-child(5) .mega-menu > a:nth-child(2) h3 { color: #1E40AF; border-bottom-color: #1E40AF; } /* Dark Blue for About Me */
-.nav > li:nth-child(5) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; } /* Slightly darker blue for Real Estate */
-.nav > li:nth-child(5) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; } /* Medium Blue for Real Estate */
-
-
-/* =========================================
-   6. CTA LINK BARS (FIXED)
-   ========================================= */
-
-/* Common Button Style */
-.btn-blue, .btn-orange, 
-.nav > li .mega-menu .btn-blue, 
-.nav > li .mega-menu .btn-orange {
+.btn-blue, .btn-orange {
     display: block;
     width: 100%;
     padding: 12px 0;
-    margin-top: auto; /* Pushes button to bottom of card */
     border-radius: 4px;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 13px;
     text-align: center;
-    text-decoration: none;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+    color: #fff;
+    margin-top: auto;
 }
-
-/* Real Estate + SEO (Menu 1) Blue */
-.nav > li:nth-child(1) .btn-blue { background-color: #1D4ED8; color: #fff; } /* Dark Blue */
-.nav > li:nth-child(1) .btn-orange { background-color: #3B82F6; color: #fff; } /* Medium Blue */
-
-/* Content Marketing + Real Estate (Menu 2) Blue */
-.nav > li:nth-child(2) .btn-blue { background-color: #1D4ED8; color: #fff; } /* Dark Blue */
-.nav > li:nth-child(2) .btn-orange { background-color: #3B82F6; color: #fff; } /* Medium Blue */
-
-/* WordPress Front End + Real Estate (Menu 3) Blue */
-.nav > li:nth-child(3) .btn-blue { background-color: #1D4ED8; color: #fff; } /* Dark Blue */
-.nav > li:nth-child(3) .btn-orange { background-color: #3B82F6; color: #fff; } /* Medium Blue */
-
-/* Location + Real Estate (Menu 4) Blue */
-.nav > li:nth-child(4) .btn-blue { background-color: #1D4ED8; color: #fff; } /* Dark Blue */
-.nav > li:nth-child(4) .btn-orange { background-color: #3B82F6; color: #fff; } /* Medium Blue */
-
-/* About Me + Real Estate (Menu 5) Blue */
-.nav > li:nth-child(5) .btn-blue { background-color: #1D4ED8; color: #fff; } /* Dark Blue */
-.nav > li:nth-child(5) .btn-orange { background-color: #3B82F6; color: #fff; } /* Medium Blue */
-
-/* Global Button Hover Effect */
-.btn-blue:hover, .btn-orange:hover {
-    filter: brightness(0.9);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-/* =========================================
-
-   6. MAIN NAV BUTTON ("Get a Proposal")
-
-   ========================================= */
+.btn-blue { background-color: #207DE9; }
+.btn-orange { background-color: #3B82F6; }
 
 .cta-button-nav {
-
     margin-left: auto;
-
-    background-color: #41D48C !important; /* Force Green */
-
+    background-color: #41D48C;
     color: #fff !important;
-
-    padding: 10px 24px;
-
+    padding: 10px 22px;
     border-radius: 4px;
-
     font-weight: 700;
-
     font-size: 14px;
-
     white-space: nowrap;
-
-    text-decoration: none;
-
-    display: inline-block;
-
-    border: none; /* Removes default browser borders */
-
 }
-
-
-
-.cta-button-nav:hover { 
-
-    background-color: #36b575 !important; 
-
-    color: #fff !important;
-
-}
-
-    /* =========================================
-
-       NEW MOBILE MENU STYLES
-
-       ========================================= */
-
-    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 1001; margin-left: auto; }
-
-    .hamburger span { width: 25px; height: 3px; background-color: #263A5F; border-radius: 2px; transition: 0.3s; }
-
-    
-
-    /* Hamburger Animation when Active */
-
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
-
-    .hamburger.active span:nth-child(2) { opacity: 0; }
-
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
-
-
-
-    .mobile-nav-container {
-
-        display: none; /* Hidden on Desktop */
-
-        position: fixed;
-
-        /* Adjusted top to match new header height (Top bar 35px + Header 70px approx) */
-
-        top: 105px; 
-
-        left: 0;
-
-        width: 100%;
-
-        height: calc(100vh - 105px);
-
-        background: #ffffff; /* White background as requested (same as desktop) */
-
-        overflow-y: auto;
-
-        padding-bottom: 40px;
-
-        transform: translateX(100%);
-
-        transition: transform 0.3s ease;
-
-        z-index: 998;
-
-        border-top: 1px solid #eee;
-
-    }
-
-
-
-    .mobile-nav-container.active {
-
-        transform: translateX(0);
-
-    }
-
-
-
-    /* Accordion Styles */
-
-    .mobile-accordion-item {
-
-        /* No border bottom as requested */
-
-        border: none;
-
-        margin-bottom: 5px;
-
-    }
-
-
-
-    .mobile-accordion-header {
-
-        display: flex;
-
-        justify-content: space-between;
-
-        align-items: center;
-
-        padding: 15px 24px;
-
-        color: #263A5F; /* Dark Blue Text */
-
-        font-weight: 700;
-
-        font-size: 16px;
-
-        cursor: pointer;
-
-        transition: color 0.2s;
-
-        /* Transparent background */
-
-        background-color: transparent; 
-
-    }
-
-    
-
-    .mobile-accordion-header i {
-
-        font-size: 14px;
-
-        transition: transform 0.3s;
-
-        color: #263A5F;
-
-    }
-
-    
-
-    .mobile-accordion-header.active {
-
-        color: #207DE9; /* Active Color */
-
-    }
-
-    .mobile-accordion-header.active i {
-
-        transform: rotate(180deg);
-
-        color: #207DE9;
-
-    }
-
-
-
-    .mobile-accordion-content {
-
-        max-height: 0;
-
-        overflow: hidden;
-
-        transition: max-height 0.3s ease;
-
-        background-color: transparent; /* No background */
-
-        padding-left: 10px;
-
-    }
-
-    
-
-    .mobile-link {
-
-        display: block;
-
-        padding: 10px 24px 10px 30px;
-
-        color: #555;
-
-        font-size: 14px;
-
-        font-weight: 500;
-
-        /* No borders */
-
-        border: none;
-
-    }
-
-    .mobile-link:hover {
-
-        color: #207DE9;
-
-        padding-left: 35px;
-
-    }
-
-
-
-    /* Mobile CTA */
-
-    .mobile-cta-wrapper {
-
-        padding: 24px;
-
-        text-align: center;
-
-    }
-
-    .mobile-btn {
-
-        display: block;
-
-        width: 100%;
-
-        background-color: #41D48C;
-
-        color: #fff;
-
-        padding: 14px;
-
-        border-radius: 4px;
-
-        font-weight: 700;
-
-        margin-top: 10px;
-
-    }
-
-
-
-    /* --- RESPONSIVE MEDIA QUERY --- */
-
-    @media (max-width: 1024px) {
-
-        /* Keeping top info bar visible but updated colors */
-
-        .mobile-nav-container { display: block; } /* Allow it to be visible (controlled by class) */
-
-        
-
-        .hamburger { display: flex; }
-
-        .nav { display: none; } /* Hide Desktop Nav */
-
-        .cta-button-nav { display: none; } /* Hide Desktop CTA */
-
-    }
 
 /* =========================================
-
-   SLIDE DOWN ANIMATION STYLES
-
+   7. MOBILE STYLES
    ========================================= */
-
-
-
-/* The animation keyframes */
-
-@keyframes slideDownFade {
-
-    0% {
-
-        transform: translateY(-100%);
-
-        opacity: 0;
-
-    }
-
-    100% {
-
-        transform: translateY(0);
-
-        opacity: 1;
-
-    }
-
-}
-
-
-
-/* This class is added via JavaScript when scrolling */
-
-.header-scrolled {
-
-    position: fixed !important; /* Force fixed to float over content */
-
-    top: 0;
-
-    left: 0;
-
-    width: 100%;
-
-    background-color: #ffffff;
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important; /* Add shadow when stuck */
-
-    animation: slideDownFade 0.4s ease-out forwards; /* The slide effect */
-
-    z-index: 1000;
-
-    padding-bottom: 0;
-
-}
-
-
-
-/* Optional: Hide the dark blue Top Info Bar when scrolled 
-
-   to make the bar sleeker */
-
-.header-scrolled .top-info-bar {
-
-    display: none;
-
-}
-
-
-
-/* Ensure the layout doesn't jump when header becomes fixed */
-
-body {
-
-    padding-top: 0; 
-
-    transition: padding-top 0.3s;
-
-}
-
-
-
-/* When header is fixed, we might need to push body content down 
-
-   (Handled in JS) */
-
-</style>
-
-
-
-<link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@300;400;700;900&amp;display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-
-
-<header id="ekrama-header-gif-style">
-
-    <div class="top-info-bar">
-
-        <div class="top-info-content">
-
-            <div class="revenue-driven">
-
-                <span class="label">REVENUE DRIVEN FOR OUR CLIENTS</span>
-
-                <span class="value">$10,085,355,239+ <span class="info-icon">ⓘ</span></span>
-
-            </div>
-
-            <div class="contact-info">
-
-                <a href="#" class="client-login">Client Login</a>
-
-                <a href="tel:888-601-5359" class="phone-number">888-601-5359</a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    <nav class="main-nav-bar">
-
-        <div class="nav-content-wrapper">
-
-            <div class="logo-brand">
-
-                <div class="logo-text">Ekramaiseo</div>
-
-                <div class="tagline">Digital Marketing That Drives Revenue®</div>
-
-            </div>
-
-
-
-            <div class="hamburger" id="hamburger-btn">
-
-                <span></span>
-
-                <span></span>
-
-                <span></span>
-
-            </div>
-
-
-
-            <ul class="nav" id="desktop-nav">
-
-                <li>
-
-<a href="https://ekramaiseo.com/real-estate-seo/">Real Estate SEO <i class="fa-solid fa-chevron-down nav-arrow"></i></a> 
-
-                    <div class="mega-menu">
-
-                        <div class="menu-column-list">
-
-                            <div class="menu-header"><i class="fa-solid fa-chart-line"></i><span>Services</span></div>
-
-                            <div class="link-list">
-
-                                <a href="https://ekramaiseo.com/real-estate-seo/keyword-research">Keyword Research</a>
-
-                                <a href="https://ekramaiseo.com/real-estate-seo/seo-copywriting">Seo Copywriting</a>
-
-                                <a href="https://ekramaiseo.com/real-estate-seo/technical-seo">Technical Seo</a>
-
-                                <a href="https://ekramaiseo.com/real-estate-seo/backlinking">Backlinking</a>
-
-                                <a href="https://ekramaiseo.com/real-estate-seo/local-seo">Local Seo</a>
-
-                            </div>
-
-                        </div>
-
-                        <a href="https://ekramaiseo.com/real-estate-seo/" class="menu-column-card theme-blue">
-
-                            <div class="card-content">
-
-                                <i class="fa-solid fa-rocket section-icon"></i>
-
-                                <h3>Real Estate SEO Strategy</h3>
-
-                                <p>Comprehensive search engine optimization designed specifically for real estate. We drive organic traffic and qualified leads through technical audits, local optimization, and authority building strategies.</p>
-
-                            </div>
-
-                            <span class="btn-blue">View Services</span>
-
-                        </a>
-
-                        <a href="https://ekramaiseo.com/portfolio" class="menu-column-card theme-orange">
-
-                            <div class="card-content">
-
-                                <i class="fa-solid fa-database section-icon"></i>
-
-                                <h3>SEO Success Stories</h3>
-
-                                <p>Browse our case studies to see how we have helped real estate agencies dominate their markets and achieve measurable ROI through targeted SEO campaigns.</p>
-
-                            </div>
-
-                            <span class="btn-orange">View Portfolio</span>
-
-                        </a>
-
-                    </div>
-
-                </li>
-
-
-
-                <li>
-
-<a href="https://ekramaiseo.com/real-estate-content-marketing/">Content Marketing <i class="fa-solid fa-chevron-down nav-arrow"></i></a> 
-
-                    <div class="mega-menu">
-
-                        <div class="menu-column-list">
-
-                            <div class="menu-header"><i class="fa-solid fa-pen-nib"></i><span>Strategy</span></div>
-
-                            <div class="link-list">
-
-                                <a href="https://ekramaiseo.com/real-estate-content-marketing/content-advertising-strategy">Content Advertising Strategy</a>
-
-                                <a href="https://ekramaiseo.com/real-estate-content-marketing/pillar-pages-and-topic-clustering">Pillar Pages And Topic Clustering</a>
-
-                                <a href="https://ekramaiseo.com/real-estate-content-marketing/guest-blogging-&amp;-authority-building">Guest Blogging &amp; Authority Building</a>
-
-                                <a href="https://ekramaiseo.com/real-estate-content-marketing/content-promotion-&amp;-distribution">Content Promotion &amp; Distribution</a>
-
-                                <a href="https://ekramaiseo.com/real-estate-content-marketing/analytics-reporting-&amp;-content-roi">Analytics Reporting &amp; Content Roi</a>
-
-                            </div>
-
-                        </div>
-
-                        <a href="https://ekramaiseo.com/real-estate-content-marketing/" class="menu-column-card theme-blue">
-
-                            <div class="card-content">
-
-                                <i class="fa-solid fa-paper-plane section-icon"></i>
-
-                                <h3>Strategic Content Marketing</h3>
-
-                                <h4> DRIVE TRAFFIC AND CAPTURE LEADS </h4>
-
-
-
-                                <p> Engage your audience with high-value content. From blog posts to email drips, we create strategies that nurture leads and establish your agency as a market authority. </p></div>
-
-                            <span class="btn-blue">Our Approach</span>
-
-                        </a>
-
-                        <a href="https://ekramaiseo.com/portfolio" class="menu-column-card theme-orange">
-
-                            <div class="card-content">
-
-                                <i class="fa-solid fa-users section-icon"></i>
-
-                                <h3>Content Campaigns</h3>
-
-                                <p>Explore our portfolio of successful content campaigns that have increased engagement, built brand trust, and converted readers into active property buyers.</p>
-
-                            </div>
-
-                            <span class="btn-orange">View Portfolio</span>
-
-                        </a>
-
-                    </div>
-
-                </li>
-
-
-
-                <li>
-
-<a href="https://ekramaiseo.com/real-estate-wordpress-front-end/">WordPress <i class="fa-solid fa-chevron-down nav-arrow"></i></a> 
-
-                    <div class="mega-menu">
-
-                        <div class="menu-column-list">
-
-                            <div class="menu-header"><i class="fa-brands fa-wordpress"></i><span>Development</span></div>
-
-                            <div class="link-list">
-
-                                <a href="https://ekramaiseo.com/real-estate-wordpress-front-end/design-conversion-to-wordpress">Design Conversion To Wordpress</a>
-
-                                <a href="https://ekramaiseo.com/real-estate-wordpress-front-end/theme-setup-&amp;-customization">Theme Setup &amp; Customization</a>
-
-                                <a href="https://ekramaiseo.com/real-estate-wordpress-front-end/seo-and-mobile-responsive">Seo And Mobile Responsive</a>
-
-                                <a href="https://ekramaiseo.com/real-estate-wordpress-front-end/speed-&amp;-front-end-optimization">Speed &amp; Front End Optimization</a>
-
-                                <a href="#">Maintenance Plans</a>
-
-                            </div>
-
-                        </div>
-
-                        <a href="https://ekramaiseo.com/real-estate-wordpress-front-end/" class="menu-column-card theme-blue">
-
-                            <div class="card-content">
-
-                                <i class="fa-solid fa-gauge-high section-icon"></i>
-
-                                <h3>Real Estate WordPress Dev</h3>
-
-                                <p>Custom WordPress development tailored for real estate. We build fast, secure, and mobile-responsive websites that showcase properties beautifully and capture leads effectively.</p>
-
-                            </div>
-
-                            <span class="btn-blue">Check Speed</span>
-
-                        </a>
-
-                        <a href="https://ekramaiseo.com/portfolio" class="menu-column-card theme-orange">
-
-                            <div class="card-content">
-
-                                <i class="fa-solid fa-server section-icon"></i>
-
-                                <h3>Web Development Projects</h3>
-
-                                <p>Check out our development portfolio featuring high-performance real estate websites with custom themes, IDX integration, and seamless user experiences.</p>
-
-                            </div>
-
-                            <span class="btn-orange">View Portfolio</span>
-
-                        </a>
-
-                    </div>
-
-                </li>
-
-
-
-                <li>
-
-<a href="https://ekramaiseo.com/location/">Location <i class="fa-solid fa-chevron-down nav-arrow"></i></a> 
-
-                    <div class="mega-menu">
-
-                        <div class="menu-column-list">
-
-                            <div class="menu-header"><i class="fa-solid fa-map-location-dot"></i><span>Regions</span></div>
-
-                            <div class="link-list">
-
-                                <a href="https://ekramaiseo.com/location/united-states-of-america">United States Of America</a>
-
-                                <a href="https://ekramaiseo.com/location/united-kingdom">United Kingdom</a>
-
-                                <a href="https://ekramaiseo.com/location/united-arab-emirates">United Arab Emirates</a>
-
-                                <a href="#">Canada</a>
-
-                                <a href="#">Australia</a>
-
-                            </div>
-
-                        </div>
-
-                        <a href="https://ekramaiseo.com/location/" class="menu-column-card theme-blue">
-
-                            <div class="card-content">
-
-                                <i class="fa-solid fa-earth-americas section-icon"></i>
-
-                                <h3>Global Real Estate Marketing</h3>
-
-                                <p>Localized digital marketing strategies for global reach. Whether targeting clients in the UK, UAE, or USA, we tailor our approach to regional market nuances.</p>
-
-                            </div>
-
-                            <span class="btn-blue">Our Offices</span>
-
-                        </a>
-
-                        <a href="https://ekramaiseo.com/portfolio" class="menu-column-card theme-orange">
-
-                            <div class="card-content">
-
-                                <i class="fa-solid fa-handshake section-icon"></i>
-
-                                <h3>International Results</h3>
-
-                                <p>See our international success stories. We have successfully helped clients expand their footprint and drive revenue in diverse competitive markets worldwide.</p>
-
-                            </div>
-
-                            <span class="btn-orange">View Portfolio</span>
-
-                        </a>
-
-                    </div>
-
-                </li>
-
-
-
-                <li>
-
-<a href="https://ekramaiseo.com/about-me/">About Me <i class="fa-solid fa-chevron-down nav-arrow"></i></a> 
-
-                    <div class="mega-menu">
-
-                        <div class="menu-column-list">
-
-                            <div class="menu-header"><i class="fa-solid fa-user-tie"></i><span>Profile</span></div>
-
-                            <div class="link-list">
-
-                                <a href="https://ekramaiseo.com/about-me/my-approach">My Approach</a>
-
-                                <a href="https://ekramaiseo.com/about-me/who-am-i">Who Am I</a>
-
-                                <a href="https://ekramaiseo.com/about-me/my-story">My Story</a>
-
-                                <a href="#">Careers</a>
-
-                                <a href="#">Contact</a>
-
-                            </div>
-
-                        </div>
-
-                        <a href="https://ekramaiseo.com/about-me/" class="menu-column-card theme-blue">
-
-                            <div class="card-content">
-
-                                <i class="fa-solid fa-bullseye section-icon"></i>
-
-                                <h3>Meet Ekrama</h3>
-
-                                <p>Learn about Ekrama’s mission to bring transparency to digital marketing. Discover the core values and strategic approach that drive client success and revenue growth.</p>
-
-                            </div>
-
-                            <span class="btn-blue">Read Mission</span>
-
-                        </a>
-
-                        <a href="https://ekramaiseo.com/portfolio" class="menu-column-card theme-orange">
-
-                            <div class="card-content">
-
-                                <i class="fa-solid fa-envelope section-icon"></i>
-
-                                <h3>Professional Journey</h3>
-
-                                <p>View my professional portfolio showcasing a history of successful projects, from technical SEO audits to full-scale web development and content strategies.</p>
-
-                            </div>
-
-                            <span class="btn-orange">View Portfolio</span>
-
-                        </a>
-
-                    </div>
-
-                </li>
-
-
-
-                <li><a href="https://ekramaiseo.com/portfolio">My Portfolio</a></li>
-
-            </ul>
-
-
-
-            <a href="#" class="cta-button-nav">Get a Proposal</a>
-
-        </div>
-
-    </nav>
-
-
-
-<div class="mobile-nav-container" id="mobile-nav">
-
-        <div class="mobile-accordion-item">
-            <div class="mobile-accordion-header">Real Estate SEO <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="mobile-accordion-content">
-                <a href="https://ekramaiseo.com/real-estate-seo/ai-seo/" class="mobile-link">AI SEO</a>
-                <a href="https://ekramaiseo.com/real-estate-seo/seo-copywriting/" class="mobile-link">SEO Copywriting</a>
-                <a href="https://ekramaiseo.com/real-estate-seo/technical-seo/" class="mobile-link">Technical SEO</a>
-                <a href="https://ekramaiseo.com/real-estate-seo/backlinking/" class="mobile-link">Backlinking</a>
-                <a href="https://ekramaiseo.com/real-estate-seo/local-seo/" class="mobile-link">Local SEO</a>
-                <a href="https://ekramaiseo.com/real-estate-seo/" class="mobile-link" style="color:#207DE9; font-weight:600;">Real Estate SEO</a>
-                <a href="https://ekramaiseo.com/portfolio/" class="mobile-link" style="color:#f97316; font-weight:600;">SEO Success Stories</a>
-            </div>
-        </div>
-
-        <div class="mobile-accordion-item">
-            <div class="mobile-accordion-header">Content Marketing <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="mobile-accordion-content">
-                <a href="https://ekramaiseo.com/real-estate-content-marketing/advertising-strategy/" class="mobile-link">Advertising Strategy</a>
-                <a href="https://ekramaiseo.com/real-estate-content-marketing/topic-clustering/" class="mobile-link">Topic Clustering</a>
-                <a href="https://ekramaiseo.com/real-estate-content-marketing/authority-building/" class="mobile-link">Authority Building</a>
-                <a href="https://ekramaiseo.com/real-estate-content-marketing/analytics-reporting-roi/" class="mobile-link">Analytics Reporting ROI</a>
-                <a href="https://ekramaiseo.com/real-estate-content-marketing/" class="mobile-link" style="color:#207DE9; font-weight:600;">Real Estate Content Marketing</a>
-                <a href="https://ekramaiseo.com/portfolio/" class="mobile-link" style="color:#f97316; font-weight:600;">Content Campaigns</a>
-            </div>
-        </div>
-
-        <div class="mobile-accordion-item">
-            <div class="mobile-accordion-header">WordPress <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="mobile-accordion-content">
-                <a href="https://ekramaiseo.com/real-estate-wordpress-front-end/design-conversion-to-wordpress/" class="mobile-link">Design Conversion to WordPress</a>
-                <a href="https://ekramaiseo.com/real-estate-wordpress-front-end/theme-setup-customization/" class="mobile-link">Theme Setup Customization</a>
-                <a href="https://ekramaiseo.com/real-estate-wordpress-front-end/seo-and-mobile-responsive/" class="mobile-link">SEO and Mobile Responsive</a>
-                <a href="https://ekramaiseo.com/real-estate-wordpress-front-end/speed-front-end-optimization/" class="mobile-link">Speed Front End Optimization</a>
-                <a href="https://ekramaiseo.com/real-estate-wordpress-front-end/" class="mobile-link" style="color:#207DE9; font-weight:600;">Real Estate WordPress Front End</a>
-                <a href="https://ekramaiseo.com/portfolio/" class="mobile-link" style="color:#f97316; font-weight:600;">Web Projects</a>
-            </div>
-        </div>
-
-        <div class="mobile-accordion-item">
-            <div class="mobile-accordion-header">Location <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="mobile-accordion-content">
-                <a href="https://ekramaiseo.com/united-states/" class="mobile-link">United States</a>
-                <a href="https://ekramaiseo.com/united-kingdom/" class="mobile-link">United Kingdom</a>
-                <a href="https://ekramaiseo.com/united-arab-emirates/" class="mobile-link">United Arab Emirates</a>
-                <a href="https://ekramaiseo.com/canada/" class="mobile-link">Canada</a>
-                <a href="https://ekramaiseo.com/australia/" class="mobile-link">Australia</a>
-                <a href="https://ekramaiseo.com/ireland/" class="mobile-link">Ireland</a>
-                <a href="https://ekramaiseo.com/new-zealand/" class="mobile-link">New Zealand</a>
-                <a href="https://ekramaiseo.com/portfolio/" class="mobile-link" style="color:#f97316; font-weight:600;">International Results</a>
-            </div>
-        </div>
-
-        <div class="mobile-accordion-item">
-            <div class="mobile-accordion-header">About Me <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="mobile-accordion-content">
-                <a href="https://ekramaiseo.com/about/approach/" class="mobile-link">Approach</a>
-                <a href="https://ekramaiseo.com/about/introduction/" class="mobile-link">Introduction</a>
-                <a href="https://ekramaiseo.com/about/story/" class="mobile-link">Story</a>
-                <a href="https://ekramaiseo.com/about/" class="mobile-link" style="color:#207DE9; font-weight:600;">About</a>
-                <a href="https://ekramaiseo.com/portfolio/" class="mobile-link" style="color:#f97316; font-weight:600;">Professional Journey</a>
-            </div>
-        </div>
-
-        <div class="mobile-accordion-item">
-            <a href="https://ekramaiseo.com/portfolio/" class="mobile-accordion-header" style="text-decoration:none;">Portfolio</a>
-        </div>
-
-        <div class="mobile-cta-wrapper">
-            <a href="#" class="mobile-btn">Get a Proposal</a>
-        </div>
-    </div><script>
-document.addEventListener('DOMContentLoaded', () => {
-
+.hamburger, .mobile-nav-container { display: none; }
+
+@media (max-width: 1024px) {
+    .nav, .cta-button-nav { display: none; } 
+    .hamburger { display: flex; margin-left: auto; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 25px; height: 3px; background: #263A5F; }
     
-
-    // =========================================
-
-    // 1. MOBILE MENU & ACCORDION LOGIC
-
-    // =========================================
-
-    const hamburger = document.getElementById('hamburger-btn');
-
-    const mobileNav = document.getElementById('mobile-nav');
-
-    const accordionHeaders = document.querySelectorAll('.mobile-accordion-header');
-
-
-
-    // Toggle Mobile Menu Overlay
-
-    hamburger.addEventListener('click', () => {
-
-        hamburger.classList.toggle('active');
-
-        mobileNav.classList.toggle('active');
-
-        
-
-        // Toggle body scroll (prevent background scrolling when menu is open)
-
-        if(mobileNav.classList.contains('active')) {
-
-            document.body.style.overflow = 'hidden';
-
-        } else {
-
-            document.body.style.overflow = '';
-
-        }
-
-    });
-
-
-
-    // Accordion Logic
-
-    accordionHeaders.forEach(header => {
-
-        header.addEventListener('click', function() {
-
-            // If it's a direct link (like Portfolio), don't do accordion logic
-
-            if(this.getAttribute('href') && this.getAttribute('href') !== '#') return;
-
-
-
-            // Toggle active class for arrow rotation
-
-            this.classList.toggle('active');
-
-
-
-            // Toggle max-height of the next element (the content div)
-
-            const content = this.nextElementSibling;
-
-            if (content && content.classList.contains('mobile-accordion-content')) {
-
-                if (content.style.maxHeight) {
-
-                    content.style.maxHeight = null;
-
-                } else {
-
-                    // Close others (auto-collapse other sections)
-
-                    document.querySelectorAll('.mobile-accordion-content').forEach(el => el.style.maxHeight = null);
-
-                    document.querySelectorAll('.mobile-accordion-header').forEach(el => {
-
-                        if(el !== this) el.classList.remove('active');
-
-                    });
-
-                    
-
-                    content.style.maxHeight = content.scrollHeight + "px";
-
-                }
-
-            }
-
-        });
-
-    });
-
-
-
-
-
-    // =========================================
-
-    // 2. SLIDE DOWN HEADER ON SCROLL LOGIC
-
-    // =========================================
-
-    const header = document.getElementById('ekrama-header-gif-style');
-
-
-
-    window.addEventListener('scroll', () => {
-
-        const currentScroll = window.scrollY;
-
-        
-
-        // Threshold: How far down (in pixels) before the bar slides in
-
-        if (currentScroll > 200) {
-
-            if (!header.classList.contains('header-scrolled')) {
-
-                header.classList.add('header-scrolled');
-
-            }
-
-        } 
-
-        // Remove class if we scroll back to the very top
-
-        else if (currentScroll < 50) {
-
-            header.classList.remove('header-scrolled');
-
-        }
-
-    });
-
-
-
-});
-
-</script>
+    .mobile-nav-container {
+        display: block;
+        position: fixed;
+        top: 105px; bottom: 0; left: 0; right: 0;
+        background: #fff;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        overflow-y: auto;
+        padding: 20px;
+        z-index: 9999;
+    }
+    .mobile-nav-container.active { transform: translateX(0); }
+    .mobile-accordion-header { padding: 18px 0; font-weight: 700; display: flex; justify-content: space-between; border-bottom: 1px solid #edf2f7; color: #263A5F; }
+    .mobile-accordion-content { max-height: 0; overflow: hidden; transition: 0.3s; background: #f8fafc; }
+    .mobile-link { display: block; padding: 12px 20px; color: #4a5568; font-size: 14px; }
+    .mobile-btn { background: #41D48C; color: #fff; text-align: center; padding: 15px; border-radius: 4px; margin-top: 20px; display: block; font-weight: 700; }
+}
