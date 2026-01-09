@@ -129,7 +129,7 @@ button { border: none; background: none; cursor: pointer; }
     position: fixed;
     top: 100px;
     left: 50%;
-    transform: translateX(-100%);
+    transform: translateX(-50%);
     
     /* SIZE: 100vw makes it cover the full screen width (left & right) */
     width: 100vw;
