@@ -269,8 +269,8 @@ align-items: center;
         ========================================= */
 .mega-menu {
     /* 1. FORCE BREAKOUT: Use 'fixed' to escape the header clipping */
-    position: fixed;       
-    top: 70px;             /* Start exactly below your 70px header */
+    position: absolute;       
+    top: 100%;             /* Start exactly below your 70px header */
     left: 50%;
     transform: translateX(-50%);
     
