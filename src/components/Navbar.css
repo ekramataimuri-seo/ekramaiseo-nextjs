@@ -1,962 +1,277 @@
+/* =========================================
+   1. GLOBAL RESET & BASE STYLES
+   ========================================= */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
 
-   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    
-
-    body {
-
-        font-family: Roboto Flex, sans-serif;
-
-font-size: 16px;
-
+body {
+    font-family: 'Roboto Flex', sans-serif;
+    font-size: 16px;
     font-weight: 400;
-
     line-height: 1.5;
-
-        color: #263A5F;
-    }
-
-
-
-    a { text-decoration: none; color: inherit; }
-
-    ul { list-style: none; }
-
-    button { border: none; background: none; cursor: pointer; }
-
-
-
-    /* --- Global Layout Containers --- */
-
-    .top-info-content, .nav-content-wrapper {
-
-        margin: 0 auto;
-
-        padding: 0 24px;
-
-        max-width: 1400px;
-
-    }
-
-
-
-    /* --- STICKY HEADER --- */
-
-    #ekrama-header-gif-style {
-
-        position: sticky;
-
-        top: 0;
-
-        width: 100%;
-
-        background-color: #ffffff;
-
-        z-index: 1000;
-
-        /* Removed box-shadow as requested */
-
-        box-shadow: none; 
-
-        border-bottom: none;
-
-    }
-
-
-
-    /* --- TOP INFO BAR --- */
-
-    .top-info-bar {
-
-        background-color: #263A5F; /* Dark Blue */
-
-        padding: 8px 0;
-
-        font-size: 10px;
-
-        font-weight: 500;
-
-        color: #ffffff; /* White Text */
-
-        border-bottom: none; /* Removed line */
-
-    }
-
-    .top-info-content {
-
-        display: flex;
-
-        justify-content: space-between;
-
-        align-items: center;
-
-    }
-
-    /* Adjusted colors for dark background */
-
-    .revenue-driven .label { color: rgba(255,255,255,0.9); }
-
-    .revenue-driven .value { color: #41D48C; font-weight: 700; margin-left: 5px; } /* Green pops on dark */
-
-    .info-icon { color: rgba(255,255,255,0.7); }
-
-    
-
-    .contact-info .phone-number { color: #ffffff; font-weight: 700; }
-
-    .contact-info .client-login {
-
-        border-right: 1px solid rgba(255,255,255,0.3);
-
-        padding-right: 15px;
-
-        margin-right: 15px;
-
-        color: #ffffff;
-
-    }
-
-
-
-    /* --- MAIN NAV BAR --- */
-
-    .nav-content-wrapper {
-
-        display: flex;
-
-        align-items: center;
-
-        height: 70px;
-
-        position: relative; 
-
-    }
-
-
-
-    .logo-brand {
-
-        display: flex;
-
-        flex-direction: column;
-
-        line-height: 1.1;
-
-        margin-right: 40px;
-
-        min-width: 180px;
-
-        z-index: 1001;
-
-    }
-
-    .logo-text { font-size: 24px; font-weight: 900; color: #263A5F; }
-
-    .tagline { font-size: 10px; font-weight: 500; color: #888; letter-spacing: 0.5px; }
-
-
-
-    /* --- Navigation Links (Desktop) --- */
-
-    .nav {
-
-        display: flex;
-
-        align-items: center;
-
-        height: 100%;
-
-    }
-
-    .nav > li {
-
-        height: 100%;
-
-        display: flex;
-
-        align-items: center;
-
-        padding: 0 20px;
-
-        cursor: pointer;
-
-        position: static;
-
-    }
+    color: #263A5F;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { border: none; background: none; cursor: pointer; }
+
+/* =========================================
+   2. STICKY HEADER & CONTAINERS
+   ========================================= */
+#ekrama-header-gif-style {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 1000;
+    box-shadow: none; 
+    border-bottom: 1px solid #eaeaea; /* Light border to define the header bottom */
+    overflow: visible !important; 
+}
+
+.nav-content-wrapper {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    position: relative; 
+    margin: 0 auto;
+    padding: 0 24px;
+    max-width: 1400px;
+    overflow: visible !important;
+}
+
+.top-info-bar {
+    background-color: #263A5F;
+    padding: 8px 0;
+    font-size: 10px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.top-info-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 24px;
+    max-width: 1400px;
+}
+
+/* =========================================
+   3. NAVIGATION LINKS (The "Tab Connection" Fix)
+   ========================================= */
+.nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.nav > li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 15px; 
+    cursor: pointer;
+    position: static; /* Allows the mega menu to align to the full-width wrapper */
+    border-bottom: 3px solid transparent; /* Prepare for the "active" underline */
+    transition: all 0.2s;
+}
 
 .nav > li > a {
-
-   font-family: 'Roboto Flex', sans-serif;
-
-    font-size: 16px;
-
-    font-weight: 400;
-
+    font-family: 'Roboto Flex', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
     color: #263A5F; 
-    
     line-height: 1.6;
-   
     transition: color 0.2s;
-
-    padding: 0 15px;
-
-    text-decoration: none;
-    
     display: flex;
-    
     align-items: center;
-    
-    gap: 8px;
-
+    gap: 6px;
+    white-space: nowrap !important; 
 }
-
-
-
-/* NEW: Style for the Arrow Icon */
 
 .nav-arrow {
-
-    font-size: 11px; /* Smaller than the text */
-
-    color: #889bb0;  /* Subtle color */
-
-    transition: transform 0.3s ease; /* Smooth rotation */
-
+    font-size: 11px;
+    color: #889bb0;
+    transition: transform 0.3s ease;
 }
 
-
-
-/* NEW: Rotate the arrow when hovering the list item */
+/* --- HOVER STATE: THE "CONNECTED" LOOK --- */
+.nav > li:hover {
+    /* 1. Turn background white to match the dropdown */
+    background-color: #fff; 
+    
+    /* 2. Add a blue bottom border to "bridge" the connection */
+    border-bottom: 3px solid #207DE9;
+    
+    /* 3. Optional: Add a subtle shadow to lift it slightly */
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.02);
+}
 
 .nav > li:hover .nav-arrow {
-
-    transform: rotate(180deg); /* Flips the arrow up */
-
-    color: #207DE9; /* Turns blue on hover */
-
+    transform: rotate(180deg);
+    color: #207DE9;
 }
 
-
-
-/* Desktop Hover Text Color Update */
-
-@media (min-width: 1025px) {
-
-    .nav > li:hover > a {
-
-        color: #207DE9;
-
-        border-bottom-color: #207DE9;
-
-    }
-
+.nav > li:hover > a {
+    color: #207DE9;
 }
 
-    /* Desktop Hover */
-
-    @media (min-width: 1025px) {
-
-        .nav > li:hover > a {
-
-            color: #207DE9;
-
-            border-bottom-color: #207DE9;
-
-        }
-
-    }
-
-
-       /* =========================================
-           1. MEGA MENU & DOODLE BACKGROUND
-        ========================================= */
+/* =========================================
+   4. MEGA MENU (The Flush Positioning Fix)
+   ========================================= */
 .mega-menu {
-    /* 1. FORCE BREAKOUT: Use 'fixed' to escape the header clipping */
-    position: fixed;       
-    top: 100px;             /* Start exactly below your 100px header */
+    position: absolute;
+    /* FIX: Start exactly at the bottom of the wrapper */
+    top: 100%; 
     left: 50%;
     transform: translateX(-50%);
     
-    /* 2. SIZING */
+    /* Size */
     width: 98vw;            
     max-width: 1250px;      
     padding: 30px;          
     
-    /* 3. VISUALS */
+    /* Visuals */
     background-color: #fff;
-    border-radius: 0 0 4px 4px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.2); 
+    /* FIX: Top corners are sharp to connect to the header, bottom are rounded */
+    border-radius: 0 0 8px 8px;
     
-    /* 4. LAYOUT */
+    /* FIX: Add a top border that matches the nav item hover border */
+    border-top: 3px solid #207DE9; 
+    
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15); 
+    
+    /* Layout */
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
     gap: 20px;              
     
-    /* 5. ANIMATION STATE */
     opacity: 0;
     visibility: hidden;
-    transition: all 0.2s ease;
-    
-    /* 6. LAYERING & SCROLLING */
-    z-index: 99999;        /* Ultra high to sit on top of everything */
-    max-height: calc(100vh - 80px); /* Prevent it from being taller than screen */
-    overflow-y: auto;      /* Add scrollbar if content is too tall */
-}
-        .mega-menu::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(244, 249, 255, 0.85), rgba(244, 249, 255, 0.85)), 
-                        url('https://ekramaiseo.com/wp-content/uploads/2025/12/SEO-Doodle-ekrama-SEO-Real-Estate.webp');
-            background-size: contain;
-            background-position: center;
-            background-repeat: repeat;
-            z-index: -1;
-        }
+    transition: opacity 0.2s ease, visibility 0.2s; /* Removed transform transition for snappier feel */
+    z-index: 99999; 
 
-        .nav > li:hover .mega-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-
-/* Show on Hover (Desktop Only) */
-
-@media (min-width: 1025px) {
-
-    .nav > li:hover .mega-menu {
-
-        opacity: 1;
-
-        visibility: visible;
-
-        transform: translateX(-50%) translateY(0);
-
-    }
-
+    max-height: calc(100vh - 120px); 
+    overflow-y: auto; 
 }
 
+/* Doodle Background */
+.mega-menu::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(244, 249, 255, 0.95), rgba(244, 249, 255, 0.95)), 
+                url('https://ekramaiseo.com/wp-content/uploads/2025/12/SEO-Doodle-ekrama-SEO-Real-Estate.webp');
+    background-size: cover;
+    z-index: -1;
+    pointer-events: none;
+}
 
+.nav > li:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+}
 
 /* =========================================
-
-   2. COLUMN CARD STYLING (Inner Cards)
-
+   5. INNER CONTENT STYLES
    ========================================= */
-
-.menu-column-list, 
-
-.menu-column-card {
-
+.menu-column-list, .menu-column-card {
     background: #fff;                 
-
-    border: 0px solid #e5e7eb;        /* Border for columns */
-
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Shadow for columns */
-
-    border-radius: 4px;
-
     padding: 25px;
-
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     height: 100%;                     
-
-    overflow: hidden;
-
     display: flex;
-
     flex-direction: column;
-
-            transition: all 0.3s ease;
-
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0; /* Subtle border for definition */
 }
 
+.menu-column-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
 
-
-.menu-column-list:hover,
-
-.menu-column-card:hover {
-
-    transform: translateY(-5px);
-
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-
-    border-color: #d1d5db;
-
-}
-
-
-
-/* =========================================
-
-   3. COLUMN 1: LINK LIST
-
-   ========================================= */
-
-.menu-header {
-
-    font-size: 25px;
-
-    font-weight: 800;
-
-    margin-bottom: 25px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    color: #333;
-
-}
-
+.menu-header { font-size: 18px; font-weight: 800; margin-bottom: 20px; color: #333; display: flex; align-items: center; gap: 10px; }
 .menu-header i { color: #207DE9; }
 
+.link-list a { display: block; padding: 10px 0; color: #555; font-size: 14px; font-weight: 500; transition: 0.2s; }
+.link-list a:hover { color: #207DE9; padding-left: 5px; }
 
+/* Dynamic Themes */
+.nav > li .mega-menu > a:nth-child(2) { background: rgba(215, 240, 255, 0.4) !important; }
+.nav > li .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.4) !important; }
 
-.link-list a {
+.card-content h3 { font-size: 18px; font-weight: 800; margin-bottom: 15px; padding-bottom: 12px; border-bottom: 2px solid #207DE9; color: #263A5F; }
+.card-content p { font-size: 13px; color: #4a5568; line-height: 1.5; margin-bottom: 15px; }
 
-    display: block;
-
-    padding: 12px 0;
-
-    color: #555;
-
-    font-size: 14px;
-
-    font-weight: 500;
-
-    transition: 0.2s;
-
-    text-decoration: none;
-
+/* Buttons */
+.btn-blue, .btn-orange {
+    display: block; width: 100%; padding: 12px 0; border-radius: 4px; 
+    font-weight: 700; font-size: 14px; text-align: center; margin-top: auto;
 }
-
-.link-list a:hover { 
-
-    color: #207DE9; 
-
-    padding-left: 5px; 
-
-    border-bottom-color: #ddd;
-
-}
-
-
+.btn-blue { background-color: #1D4ED8; color: #fff; }
+.btn-orange { background-color: #3B82F6; color: #fff; }
 
 /* =========================================
-
-   4. COLUMN 2 & 3: CONTENT CARDS
-
+   6. SCROLL ANIMATION
    ========================================= */
-
-.menu-column-card {
-
-    justify-content: space-between; 
-
-}
-
-
-
-/* Heading with DIVIDING LINE below it */
-
-.card-content h3 {
-
-    font-size: 18px; 
-
-    font-weight: 800; 
-
-    margin-bottom: 15px; 
-
-    line-height: 1.4;
-
-    padding-bottom: 15px;       
-
-    border-bottom: 2px solid;   /* Color defined in Themes below */
-
-}
-
-.card-content h4 {
-
-    font-size: 14px; 
-
-    font-weight: 600; 
-
-    margin-bottom: 15px; 
-
-    padding-bottom: 12px;       
-
-    text-align: center;      /* Aligns the text to the center */
-
-
-
-}
-
-
-
-
-
-.card-content p {
-
-    font-size: 13px; 
-
-    color: #4a5568; 
-
-    margin-bottom: 10px; 
-
-}
-
-
-
-.section-icon { 
-
-    font-size: 32px; 
-
-    margin-bottom: 15px; 
-
-    display: inline-block; 
-
-}
-        /* Forward Arrow on Hover */
-        .link-list a::after {
-            content: '\f061';
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            font-size: 11px;
-            color: #207DE9;
-            margin-left: 10px;
-            opacity: 0;
-            transform: translateX(-5px);
-            transition: 0.3s;
-        }
-        .link-list a:hover { color: #207DE9; padding-left: 5px; }
-        .link-list a:hover::after { opacity: 1; transform: translateX(0); }
-
-
-
-/* =========================================
-   5. THEMES (Colors & Lines)
-   ========================================= */
-
-/* Menu 1: Real Estate + SEO (Blue) */
-.nav > li:nth-child(1) .mega-menu > a:nth-child(2) { background: rgba(215, 240, 255, 0.7) !important; } /* Light Blue for SEO */
-.nav > li:nth-child(1) .mega-menu > a:nth-child(2) h3 { color: #1E40AF; border-bottom-color: #1E40AF; } /* Darker Blue for SEO */
-.nav > li:nth-child(1) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; } /* Slightly darker blue for Real Estate */
-.nav > li:nth-child(1) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; } /* Medium Blue for Real Estate */
-
-/* Menu 2: Content Marketing + Real Estate (Blue) */
-.nav > li:nth-child(2) .mega-menu > a:nth-child(2) { background: rgba(210, 230, 255, 0.7) !important; } /* Light Blue for Content Marketing */
-.nav > li:nth-child(2) .mega-menu > a:nth-child(2) h3 { color: #1D4ED8; border-bottom-color: #1D4ED8; } /* Dark Blue for Content Marketing */
-.nav > li:nth-child(2) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; } /* Slightly darker blue for Real Estate */
-.nav > li:nth-child(2) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; } /* Medium Blue for Real Estate */
-
-/* Menu 3: WordPress Front End + Real Estate (Blue) */
-.nav > li:nth-child(3) .mega-menu > a:nth-child(2) { background: rgba(230, 245, 255, 0.7) !important; } /* Light Blue for WordPress */
-.nav > li:nth-child(3) .mega-menu > a:nth-child(2) h3 { color: #1E40AF; border-bottom-color: #1E40AF; } /* Darker Blue for WordPress */
-.nav > li:nth-child(3) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; } /* Slightly darker blue for Real Estate */
-.nav > li:nth-child(3) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; } /* Medium Blue for Real Estate */
-
-/* Menu 4: Location + Real Estate (Blue) */
-.nav > li:nth-child(4) .mega-menu > a:nth-child(2) { background: rgba(215, 240, 255, 0.7) !important; } /* Light Blue for Location */
-.nav > li:nth-child(4) .mega-menu > a:nth-child(2) h3 { color: #1D4ED8; border-bottom-color: #1D4ED8; } /* Dark Blue for Location */
-.nav > li:nth-child(4) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; } /* Slightly darker blue for Real Estate */
-.nav > li:nth-child(4) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; } /* Medium Blue for Real Estate */
-
-/* Menu 5: About Me + Real Estate (Blue) */
-.nav > li:nth-child(5) .mega-menu > a:nth-child(2) { background: rgba(220, 245, 255, 0.7) !important; } /* Light Blue for About Me */
-.nav > li:nth-child(5) .mega-menu > a:nth-child(2) h3 { color: #1E40AF; border-bottom-color: #1E40AF; } /* Dark Blue for About Me */
-.nav > li:nth-child(5) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; } /* Slightly darker blue for Real Estate */
-.nav > li:nth-child(5) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; } /* Medium Blue for Real Estate */
-
-
-/* =========================================
-   6. CTA LINK BARS (FIXED)
-   ========================================= */
-
-/* Common Button Style */
-.btn-blue, .btn-orange, 
-.nav > li .mega-menu .btn-blue, 
-.nav > li .mega-menu .btn-orange {
-    display: block;
-    width: 100%;
-    padding: 12px 0;
-    margin-top: auto; /* Pushes button to bottom of card */
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: 14px;
-    text-align: center;
-    text-decoration: none;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Real Estate + SEO (Menu 1) Blue */
-.nav > li:nth-child(1) .btn-blue { background-color: #1D4ED8; color: #fff; } /* Dark Blue */
-.nav > li:nth-child(1) .btn-orange { background-color: #3B82F6; color: #fff; } /* Medium Blue */
-
-/* Content Marketing + Real Estate (Menu 2) Blue */
-.nav > li:nth-child(2) .btn-blue { background-color: #1D4ED8; color: #fff; } /* Dark Blue */
-.nav > li:nth-child(2) .btn-orange { background-color: #3B82F6; color: #fff; } /* Medium Blue */
-
-/* WordPress Front End + Real Estate (Menu 3) Blue */
-.nav > li:nth-child(3) .btn-blue { background-color: #1D4ED8; color: #fff; } /* Dark Blue */
-.nav > li:nth-child(3) .btn-orange { background-color: #3B82F6; color: #fff; } /* Medium Blue */
-
-/* Location + Real Estate (Menu 4) Blue */
-.nav > li:nth-child(4) .btn-blue { background-color: #1D4ED8; color: #fff; } /* Dark Blue */
-.nav > li:nth-child(4) .btn-orange { background-color: #3B82F6; color: #fff; } /* Medium Blue */
-
-/* About Me + Real Estate (Menu 5) Blue */
-.nav > li:nth-child(5) .btn-blue { background-color: #1D4ED8; color: #fff; } /* Dark Blue */
-.nav > li:nth-child(5) .btn-orange { background-color: #3B82F6; color: #fff; } /* Medium Blue */
-
-/* Global Button Hover Effect */
-.btn-blue:hover, .btn-orange:hover {
-    filter: brightness(0.9);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-/* =========================================
-
-   6. MAIN NAV BUTTON ("Get a Proposal")
-
-   ========================================= */
-
-.cta-button-nav {
-
-    margin-left: auto;
-
-    background-color: #41D48C !important; /* Force Green */
-
-    color: #fff !important;
-
-    padding: 10px 24px;
-
-    border-radius: 4px;
-
-    font-weight: 700;
-
-    font-size: 14px;
-
-    white-space: nowrap;
-
-    text-decoration: none;
-
-    display: inline-block;
-
-    border: none; /* Removes default browser borders */
-
-}
-
-
-
-.cta-button-nav:hover { 
-
-    background-color: #36b575 !important; 
-
-    color: #fff !important;
-
-}
-
-    /* =========================================
-
-       NEW MOBILE MENU STYLES
-
-       ========================================= */
-
-    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 1001; margin-left: auto; }
-
-    .hamburger span { width: 25px; height: 3px; background-color: #263A5F; border-radius: 2px; transition: 0.3s; }
-
-    
-
-    /* Hamburger Animation when Active */
-
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
-
-    .hamburger.active span:nth-child(2) { opacity: 0; }
-
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
-
-
-
-    .mobile-nav-container {
-
-        display: none; /* Hidden on Desktop */
-
-        position: fixed;
-
-        /* Adjusted top to match new header height (Top bar 35px + Header 70px approx) */
-
-        top: 105px; 
-
-        left: 0;
-
-        width: 100%;
-
-        height: calc(100vh - 105px);
-
-        background: #ffffff; /* White background as requested (same as desktop) */
-
-        overflow-y: auto;
-
-        padding-bottom: 40px;
-
-        transform: translateX(100%);
-
-        transition: transform 0.3s ease;
-
-        z-index: 998;
-
-        border-top: 1px solid #eee;
-
-    }
-
-
-
-    .mobile-nav-container.active {
-
-        transform: translateX(0);
-
-    }
-
-
-
-    /* Accordion Styles */
-
-    .mobile-accordion-item {
-
-        /* No border bottom as requested */
-
-        border: none;
-
-        margin-bottom: 5px;
-
-    }
-
-
-
-    .mobile-accordion-header {
-
-        display: flex;
-
-        justify-content: space-between;
-
-        align-items: center;
-
-        padding: 15px 24px;
-
-        color: #263A5F; /* Dark Blue Text */
-
-        font-weight: 700;
-
-        font-size: 16px;
-
-        cursor: pointer;
-
-        transition: color 0.2s;
-
-        /* Transparent background */
-
-        background-color: transparent; 
-
-    }
-
-    
-
-    .mobile-accordion-header i {
-
-        font-size: 14px;
-
-        transition: transform 0.3s;
-
-        color: #263A5F;
-
-    }
-
-    
-
-    .mobile-accordion-header.active {
-
-        color: #207DE9; /* Active Color */
-
-    }
-
-    .mobile-accordion-header.active i {
-
-        transform: rotate(180deg);
-
-        color: #207DE9;
-
-    }
-
-
-
-    .mobile-accordion-content {
-
-        max-height: 0;
-
-        overflow: hidden;
-
-        transition: max-height 0.3s ease;
-
-        background-color: transparent; /* No background */
-
-        padding-left: 10px;
-
-    }
-
-    
-
-    .mobile-link {
-
-        display: block;
-
-        padding: 10px 24px 10px 30px;
-
-        color: #555;
-
-        font-size: 14px;
-
-        font-weight: 500;
-
-        /* No borders */
-
-        border: none;
-
-    }
-
-    .mobile-link:hover {
-
-        color: #207DE9;
-
-        padding-left: 35px;
-
-    }
-
-
-
-    /* Mobile CTA */
-
-    .mobile-cta-wrapper {
-
-        padding: 24px;
-
-        text-align: center;
-
-    }
-
-    .mobile-btn {
-
-        display: block;
-
-        width: 100%;
-
-        background-color: #41D48C;
-
-        color: #fff;
-
-        padding: 14px;
-
-        border-radius: 4px;
-
-        font-weight: 700;
-
-        margin-top: 10px;
-
-    }
-
-
-
-    /* --- RESPONSIVE MEDIA QUERY --- */
-
-    @media (max-width: 1024px) {
-
-        /* Keeping top info bar visible but updated colors */
-
-        .mobile-nav-container { display: block; } /* Allow it to be visible (controlled by class) */
-
-        
-
-        .hamburger { display: flex; }
-
-        .nav { display: none; } /* Hide Desktop Nav */
-
-        .cta-button-nav { display: none; } /* Hide Desktop CTA */
-
-    }
-
-/* =========================================
-
-   SLIDE DOWN ANIMATION STYLES
-
-   ========================================= */
-
-
-
-/* The animation keyframes */
-
 @keyframes slideDownFade {
-
-    0% {
-
-        transform: translateY(-100%);
-
-        opacity: 0;
-
-    }
-
-    100% {
-
-        transform: translateY(0);
-
-        opacity: 1;
-
-    }
-
+    0% { transform: translateY(-100%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
 }
-
-
-
-/* This class is added via JavaScript when scrolling */
 
 .header-scrolled {
-
-    position: fixed !important; /* Force fixed to float over content */
-
-    top: 0;
-
-    left: 0;
-
-    width: 100%;
-
+    position: fixed !important;
+    top: 0; left: 0; width: 100%;
     background-color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
+    animation: slideDownFade 0.4s ease-out forwards;
+    z-index: 9999;
+}
+.header-scrolled .top-info-bar { display: none; }
 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important; /* Add shadow when stuck */
+/* =========================================
+   7. LOGO & CTA
+   ========================================= */
+.logo-brand { display: flex; flex-direction: column; margin-right: 40px; min-width: 180px; }
+.logo-text { font-size: 24px; font-weight: 900; color: #263A5F; }
+.tagline { font-size: 10px; font-weight: 500; color: #888; letter-spacing: 0.5px; }
 
-    animation: slideDownFade 0.4s ease-out forwards; /* The slide effect */
-
-    z-index: 1000;
-
-    padding-bottom: 0;
-
+.cta-button-nav {
+    margin-left: auto;
+    background-color: #41D48C !important;
+    color: #fff !important;
+    padding: 10px 24px;
+    border-radius: 4px;
+    font-weight: 700;
+    white-space: nowrap;
 }
 
+.revenue-driven .value { color: #41D48C; font-weight: 700; margin-left: 5px; }
+.contact-info .client-login { border-right: 1px solid rgba(255,255,255,0.3); padding-right: 15px; margin-right: 15px; color: #ffffff; }
+.contact-info .phone-number { color: #ffffff; font-weight: 700; }
 
-
-/* Optional: Hide the dark blue Top Info Bar when scrolled 
-
-   to make the bar sleeker */
-
-.header-scrolled .top-info-bar {
-
-    display: none;
-
-}
-
-
-
-/* Ensure the layout doesn't jump when header becomes fixed */
-
-body {
-
-    padding-top: 0; 
-
-    transition: padding-top 0.3s;
-
+/* =========================================
+   8. MOBILE MENU
+   ========================================= */
+@media (max-width: 1024px) {
+    .nav, .cta-button-nav { display: none; }
+    .hamburger { display: flex; }
+    
+    .mobile-nav-container {
+        display: block;
+        position: fixed;
+        top: 105px; left: 0; width: 100%; height: calc(100vh - 105px);
+        background: #ffffff;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 998;
+        overflow-y: auto;
+    }
+    .mobile-nav-container.active { transform: translateX(0); }
+    .mobile-accordion-header { padding: 15px 24px; font-weight: 700; display: flex; justify-content: space-between; color: #263A5F; }
+    .mobile-accordion-content { max-height: 0; overflow: hidden; transition: 0.3s; }
 }
