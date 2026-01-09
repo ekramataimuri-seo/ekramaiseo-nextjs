@@ -28,16 +28,18 @@ button { border: none; background: none; cursor: pointer; }
     background-color: #ffffff;
     z-index: 1000;
     box-shadow: none; 
-    border-bottom: 1px solid #f0f0f0; /* Subtle border to define the header edge */
+    border-bottom: 1px solid #f0f0f0;
+    /* FIX: Allow menu to overflow */
+    overflow: visible !important;
 }
 
 /* --- TOP INFO BAR --- */
 .top-info-bar {
-    background-color: #263A5F; /* Dark Blue */
+    background-color: #263A5F;
     padding: 8px 0;
     font-size: 10px;
     font-weight: 500;
-    color: #ffffff; /* White Text */
+    color: #ffffff;
     border-bottom: none;
 }
 
@@ -47,7 +49,6 @@ button { border: none; background: none; cursor: pointer; }
     align-items: center;
 }
 
-/* Adjusted colors for dark background */
 .revenue-driven .label { color: rgba(255,255,255,0.9); }
 .revenue-driven .value { color: #41D48C; font-weight: 700; margin-left: 5px; } 
 .info-icon { color: rgba(255,255,255,0.7); }
@@ -65,22 +66,18 @@ button { border: none; background: none; cursor: pointer; }
     display: flex;
     align-items: center;
     height: 70px;
-    position: relative; /* CRITICAL: Anchors the dropdown to this box */
+    position: relative; /* Anchor for dropdown */
+    /* FIX: Allow menu to overflow */
+    overflow: visible !important;
 }
 
 .logo-brand {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-    margin-right: 40px;
-    min-width: 180px;
-    z-index: 1001;
+    display: flex; flex-direction: column; line-height: 1.1; margin-right: 40px; min-width: 180px; z-index: 1001;
 }
-
 .logo-text { font-size: 24px; font-weight: 900; color: #263A5F; }
 .tagline { font-size: 10px; font-weight: 500; color: #888; letter-spacing: 0.5px; }
 
-/* --- Navigation Links (Desktop) --- */
+/* --- Navigation Links --- */
 .nav {
     display: flex;
     align-items: center;
@@ -93,8 +90,8 @@ button { border: none; background: none; cursor: pointer; }
     align-items: center;
     padding: 0 15px;
     cursor: pointer;
-    position: static; /* Allows the mega menu to stretch full width of wrapper */
-    border-bottom: 3px solid transparent; /* Prevents jumping on hover */
+    position: static; /* Allows menu to stretch full screen */
+    border-bottom: 3px solid transparent; /* Prepare for hover effect */
     transition: all 0.2s;
 }
 
@@ -110,63 +107,51 @@ button { border: none; background: none; cursor: pointer; }
     display: flex;
     align-items: center;
     gap: 6px;
-    white-space: nowrap; /* FIX: Prevents text from breaking lines */
+    white-space: nowrap;
 }
 
 /* --- HOVER EFFECT: The Connected Tab --- */
 .nav > li:hover {
-    background-color: #fff; /* Matches dropdown background */
-    border-bottom: 3px solid #207DE9; /* The blue line connector */
+    background-color: #fff; /* White background matches the dropdown */
+    border-bottom: 3px solid #207DE9; /* Blue Line Connection */
 }
 
-/* Style for the Arrow Icon */
-.nav-arrow {
-    font-size: 11px;
-    color: #889bb0;
-    transition: transform 0.3s ease;
-}
+.nav-arrow { font-size: 11px; color: #889bb0; transition: transform 0.3s ease; }
+.nav > li:hover .nav-arrow { transform: rotate(180deg); color: #207DE9; }
+.nav > li:hover > a { color: #207DE9; }
 
-/* Rotate the arrow when hovering */
-.nav > li:hover .nav-arrow {
-    transform: rotate(180deg);
-    color: #207DE9;
-}
-
-/* Desktop Hover Text Color Update */
-@media (min-width: 1025px) {
-    .nav > li:hover > a {
-        color: #207DE9;
-    }
-}
 
 /* =========================================
-   1. MEGA MENU & DOODLE BACKGROUND
+   1. MEGA MENU (Full Screen Width Fix)
    ========================================= */
 .mega-menu {
-    /* POSITION FIX: Use absolute + top 100% to snap exactly to the header bottom */
-    position: fixed;        
-    top: 100px;
+    /* POSITIONING: Sticks exactly to the bottom of the nav bar */
+    position: absolute;
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
     
-    /* SIZING */
-    width: 98vw;            
-    max-width: 1250px;      
-    padding: 30px;          
+    /* SIZE: 100vw makes it cover the full screen width (left & right) */
+    width: 100vw;
+    max-width: none; /* Remove any width limits */
+    
+    /* PADDING: This calculation centers your content to 1400px 
+       while allowing the background to stretch edge-to-edge */
+    padding: 30px max(24px, calc((100vw - 1400px) / 2));
     
     /* VISUALS */
     background-color: #fff;
     border-radius: 0 0 4px 4px;
     
-    /* CONNECTION BORDER: Matches the nav item hover border */
-    border-top: 3px solid #207DE9; 
+    /* CONNECTION: Matches the nav hover border */
+    border-top: 3px solid #207DE9;
     
-    box-shadow: 0 20px 50px rgba(0,0,0,0.15); 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
     
     /* LAYOUT */
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 20px;              
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
     
     /* ANIMATION */
     opacity: 0;
@@ -174,9 +159,9 @@ button { border: none; background: none; cursor: pointer; }
     transition: all 0.2s ease;
     
     /* LAYERING */
-    z-index: 99999; 
-    max-height: calc(100vh - 80px); 
-    overflow-y: auto; 
+    z-index: 99999;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
 }
 
 .mega-menu::before {
@@ -191,97 +176,37 @@ button { border: none; background: none; cursor: pointer; }
     pointer-events: none;
 }
 
-.nav > li:hover .mega-menu { 
-    opacity: 1; 
-    visibility: visible; 
-}
+.nav > li:hover .mega-menu { opacity: 1; visibility: visible; }
 
 /* =========================================
-   2. COLUMN CARD STYLING (Inner Cards)
+   2. INNER CONTENT STYLES
    ========================================= */
 .menu-column-list, .menu-column-card {
-    background: #fff;                 
-    border: 1px solid #f0f0f0; /* Subtle border for definition */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     border-radius: 4px;
     padding: 25px;
-    height: 100%;                     
-    overflow: hidden;
+    height: 100%;
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease;
 }
+.menu-column-list:hover, .menu-column-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
 
-.menu-column-list:hover, .menu-column-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-/* =========================================
-   3. COLUMN 1: LINK LIST
-   ========================================= */
-.menu-header {
-    font-size: 22px;
-    font-weight: 800;
-    margin-bottom: 25px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #333;
-}
+.menu-header { font-size: 22px; font-weight: 800; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; color: #333; }
 .menu-header i { color: #207DE9; }
 
-.link-list a {
-    display: block;
-    padding: 10px 0;
-    color: #555;
-    font-size: 14px;
-    font-weight: 500;
-    transition: 0.2s;
-    text-decoration: none;
-}
-.link-list a:hover { 
-    color: #207DE9; 
-    padding-left: 5px; 
-}
+.link-list a { display: block; padding: 10px 0; color: #555; font-size: 14px; font-weight: 500; transition: 0.2s; text-decoration: none; }
+.link-list a:hover { color: #207DE9; padding-left: 5px; }
 
-/* =========================================
-   4. COLUMN 2 & 3: CONTENT CARDS
-   ========================================= */
 .menu-column-card { justify-content: space-between; }
+.card-content h3 { font-size: 18px; font-weight: 800; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 2px solid; line-height: 1.4; }
+.card-content h4 { font-size: 14px; font-weight: 600; margin-bottom: 15px; padding-bottom: 12px; text-align: center; }
+.card-content p { font-size: 13px; color: #4a5568; margin-bottom: 10px; }
+.section-icon { font-size: 32px; margin-bottom: 15px; display: inline-block; }
 
-.card-content h3 {
-    font-size: 18px; 
-    font-weight: 800; 
-    margin-bottom: 15px; 
-    line-height: 1.4;
-    padding-bottom: 15px;        
-    border-bottom: 2px solid;   
-}
-
-.card-content h4 {
-    font-size: 14px; 
-    font-weight: 600; 
-    margin-bottom: 15px; 
-    padding-bottom: 12px;        
-    text-align: center;      
-}
-
-.card-content p {
-    font-size: 13px; 
-    color: #4a5568; 
-    margin-bottom: 10px; 
-}
-
-.section-icon { 
-    font-size: 32px; 
-    margin-bottom: 15px; 
-    display: inline-block; 
-}
-
-/* =========================================
-   5. THEMES (Colors & Lines)
-   ========================================= */
+/* Themes */
 .nav > li:nth-child(1) .mega-menu > a:nth-child(2) { background: rgba(215, 240, 255, 0.7) !important; }
 .nav > li:nth-child(1) .mega-menu > a:nth-child(2) h3 { color: #1E40AF; border-bottom-color: #1E40AF; }
 .nav > li:nth-child(1) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; }
@@ -307,150 +232,59 @@ button { border: none; background: none; cursor: pointer; }
 .nav > li:nth-child(5) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; }
 .nav > li:nth-child(5) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; }
 
-/* =========================================
-   6. CTA LINK BARS (FIXED)
-   ========================================= */
+/* Buttons */
 .btn-blue, .btn-orange {
-    display: block;
-    width: 100%;
-    padding: 12px 0;
-    margin-top: auto;
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: 14px;
-    text-align: center;
-    text-decoration: none;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+    display: block; width: 100%; padding: 12px 0; margin-top: auto; border-radius: 4px;
+    font-weight: 700; font-size: 14px; text-align: center; text-decoration: none; transition: background 0.3s ease;
 }
+.btn-blue { background-color: #1D4ED8; color: #fff; }
+.btn-orange { background-color: #3B82F6; color: #fff; }
+.btn-blue:hover, .btn-orange:hover { filter: brightness(0.9); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
 
-.nav > li:nth-child(1) .btn-blue { background-color: #1D4ED8; color: #fff; }
-.nav > li:nth-child(1) .btn-orange { background-color: #3B82F6; color: #fff; }
-.nav > li:nth-child(2) .btn-blue { background-color: #1D4ED8; color: #fff; }
-.nav > li:nth-child(2) .btn-orange { background-color: #3B82F6; color: #fff; }
-.nav > li:nth-child(3) .btn-blue { background-color: #1D4ED8; color: #fff; }
-.nav > li:nth-child(3) .btn-orange { background-color: #3B82F6; color: #fff; }
-.nav > li:nth-child(4) .btn-blue { background-color: #1D4ED8; color: #fff; }
-.nav > li:nth-child(4) .btn-orange { background-color: #3B82F6; color: #fff; }
-.nav > li:nth-child(5) .btn-blue { background-color: #1D4ED8; color: #fff; }
-.nav > li:nth-child(5) .btn-orange { background-color: #3B82F6; color: #fff; }
-
-.btn-blue:hover, .btn-orange:hover {
-    filter: brightness(0.9);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-/* =========================================
-   6. MAIN NAV BUTTON ("Get a Proposal")
-   ========================================= */
+/* CTA Button */
 .cta-button-nav {
-    margin-left: auto;
-    background-color: #41D48C !important; 
-    color: #fff !important;
-    padding: 10px 24px;
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: 14px;
-    white-space: nowrap;
-    text-decoration: none;
-    display: inline-block;
+    margin-left: auto; background-color: #41D48C !important; color: #fff !important;
+    padding: 10px 24px; border-radius: 4px; font-weight: 700; font-size: 14px; white-space: nowrap; text-decoration: none; display: inline-block; border: none;
 }
-
 .cta-button-nav:hover { background-color: #36b575 !important; }
 
 /* =========================================
-   NEW MOBILE MENU STYLES
+   MOBILE MENU
    ========================================= */
-.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 1001; margin-left: auto; }
-.hamburger span { width: 25px; height: 3px; background-color: #263A5F; border-radius: 2px; transition: 0.3s; }
+.hamburger, .mobile-nav-container { display: none; }
 
-.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
-.hamburger.active span:nth-child(2) { opacity: 0; }
-.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
-
-.mobile-nav-container {
-    display: none;
-    position: fixed;
-    top: 105px; 
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 105px);
-    background: #ffffff;
-    overflow-y: auto;
-    padding-bottom: 40px;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    z-index: 998;
-    border-top: 1px solid #eee;
-}
-
-.mobile-nav-container.active { transform: translateX(0); }
-.mobile-accordion-item { border: none; margin-bottom: 5px; }
-
-.mobile-accordion-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 24px;
-    color: #263A5F; 
-    font-weight: 700;
-    font-size: 16px;
-    cursor: pointer;
-    transition: color 0.2s;
-    background-color: transparent; 
-}
-.mobile-accordion-header i { font-size: 14px; transition: transform 0.3s; color: #263A5F; }
-.mobile-accordion-header.active { color: #207DE9; }
-.mobile-accordion-header.active i { transform: rotate(180deg); color: #207DE9; }
-
-.mobile-accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    background-color: transparent;
-    padding-left: 10px;
-}
-
-.mobile-link {
-    display: block;
-    padding: 10px 24px 10px 30px;
-    color: #555;
-    font-size: 14px;
-    font-weight: 500;
-    border: none;
-}
-.mobile-link:hover { color: #207DE9; padding-left: 35px; }
-
-.mobile-cta-wrapper { padding: 24px; text-align: center; }
-.mobile-btn {
-    display: block; width: 100%; background-color: #41D48C; color: #fff;
-    padding: 14px; border-radius: 4px; font-weight: 700; margin-top: 10px;
-}
-
-/* --- RESPONSIVE MEDIA QUERY --- */
 @media (max-width: 1024px) {
-    .mobile-nav-container { display: block; }
-    .hamburger { display: flex; }
-    .nav { display: none; } 
-    .cta-button-nav { display: none; } 
+    .nav, .cta-button-nav { display: none; }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; z-index: 1001; margin-left: auto; cursor: pointer; }
+    .hamburger span { width: 25px; height: 3px; background-color: #263A5F; border-radius: 2px; transition: 0.3s; }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+    .mobile-nav-container {
+        display: block; position: fixed; top: 105px; left: 0; width: 100%; height: calc(100vh - 105px);
+        background: #ffffff; overflow-y: auto; padding-bottom: 40px; transform: translateX(100%);
+        transition: transform 0.3s ease; z-index: 998; border-top: 1px solid #eee;
+    }
+    .mobile-nav-container.active { transform: translateX(0); }
+    .mobile-accordion-header { padding: 15px 24px; display: flex; justify-content: space-between; font-weight: 700; color: #263A5F; background-color: transparent; }
+    .mobile-accordion-content { max-height: 0; overflow: hidden; transition: 0.3s; padding-left: 10px; background-color: transparent; }
+    .mobile-link { display: block; padding: 10px 24px 10px 30px; color: #555; font-size: 14px; font-weight: 500; border: none; }
+    .mobile-cta-wrapper { padding: 24px; text-align: center; }
+    .mobile-btn { display: block; width: 100%; background-color: #41D48C; color: #fff; padding: 14px; border-radius: 4px; font-weight: 700; margin-top: 10px; }
 }
 
 /* =========================================
-   SLIDE DOWN ANIMATION STYLES
+   SCROLL ANIMATION
    ========================================= */
 @keyframes slideDownFade {
     0% { transform: translateY(-100%); opacity: 0; }
     100% { transform: translateY(0); opacity: 1; }
 }
-
 .header-scrolled {
-    position: fixed !important;
-    top: 0; left: 0; width: 100%;
-    background-color: #ffffff;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important;
-    animation: slideDownFade 0.4s ease-out forwards;
-    z-index: 1000;
-    padding-bottom: 0;
+    position: fixed !important; top: 0; left: 0; width: 100%; background-color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important; animation: slideDownFade 0.4s ease-out forwards;
+    z-index: 1000; padding-bottom: 0;
 }
-
 .header-scrolled .top-info-bar { display: none; }
 body { padding-top: 0; transition: padding-top 0.3s; }
