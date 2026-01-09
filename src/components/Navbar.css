@@ -129,8 +129,8 @@ button { border: none; background: none; cursor: pointer; }
    1. MEGA MENU
    ========================================= */
 .mega-menu {
-    position: absolute; 
-    top: 100%;
+    position: fixed; 
+    top: 100px;
     left: 50%;
     transform: translateX(-50%);
     
