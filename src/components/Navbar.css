@@ -4,16 +4,18 @@
 :root {
     --font-headings-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     --font-base-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    --dark-blue: #263A5F; /* The exact top bar color */
+    --light-text: #ffffff;
+    --gray-text: #cbd5e0;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    /* USE THE NEW FONT HERE */
     font-family: var(--font-base-default); 
     font-size: 14px;
     font-weight: 400;
-    color: #263A5F; 
+    color: var(--dark-blue); 
 }
 
 a { text-decoration: none; color: inherit; }
@@ -41,7 +43,7 @@ button { border: none; background: none; cursor: pointer; }
 
 /* --- TOP INFO BAR --- */
 .top-info-bar {
-    background-color: #263A5F;
+    background-color: var(--dark-blue);
     padding: 8px 0;
     font-size: 10px;
     font-weight: 500;
@@ -79,7 +81,7 @@ button { border: none; background: none; cursor: pointer; }
 .logo-brand {
     display: flex; flex-direction: column; line-height: 1.1; margin-right: 40px; min-width: 180px; z-index: 1001;
 }
-.logo-text { font-size: 24px; font-weight: 900; color: #263A5F; }
+.logo-text { font-size: 24px; font-weight: 900; color: var(--dark-blue); }
 .tagline { font-size: 10px; font-weight: 500; color: #888; letter-spacing: 0.5px; }
 
 /* --- Navigation Links --- */
@@ -94,25 +96,24 @@ button { border: none; background: none; cursor: pointer; }
     height: 100%;
     display: flex;
     align-items: center;
-    padding: 0 40px 0 0; /* Keeps the spacing you asked for */
+    padding: 0 40px 0 0; 
     cursor: pointer;
     position: static; 
     transition: all 0.2s;
 }
 
 .nav > li > a {
-    /* USE THE NEW FONT HERE */
     font-family: var(--font-base-default);
     font-size: 14px;
     font-weight: 500; 
-    color: #263A5F; 
+    color: var(--dark-blue); 
     line-height: 1.2;
     transition: color 0.2s;
     padding: 0;
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 12px; /* Keeps the arrow gap you asked for */
+    gap: 12px; 
 }
 
 /* --- HOVER EFFECT --- */
@@ -126,10 +127,10 @@ button { border: none; background: none; cursor: pointer; }
 
 
 /* =========================================
-   1. MEGA MENU
+   1. MEGA MENU (Dark Blue Theme)
    ========================================= */
 .mega-menu {
-    position: fixed; 
+    position: foxed; 
     top: 100px;
     left: 50%;
     transform: translateX(-50%);
@@ -139,11 +140,13 @@ button { border: none; background: none; cursor: pointer; }
     
     padding: 45px max(24px, calc((100vw - 1400px) / 2));
     
-    background-color: #fff;
-    border-radius: 0 0 4px 4px;
-    border-top: 1px solid #f0f0f0; 
+    /* CHANGE: Background color matched to Top Wrapper (#263A5F) */
+    background-color: var(--dark-blue);
     
-    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    border-radius: 0 0 4px 4px;
+    border-top: 1px solid rgba(255,255,255,0.1); 
+    
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3); /* Slightly darker shadow for contrast */
     
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -158,11 +161,13 @@ button { border: none; background: none; cursor: pointer; }
     overflow-y: auto;
 }
 
+/* Updated Background Blend for Dark Mode */
 .mega-menu::before {
     content: "";
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(rgba(244, 249, 255, 0.95), rgba(244, 249, 255, 0.95)), 
+    /* Darker gradient to blend with the blue */
+    background: linear-gradient(rgba(38, 58, 95, 0.96), rgba(38, 58, 95, 0.96)), 
                 url('/SEO-Doodle-ekrama-SEO-Real-Estate.webp');
     background-size: cover;
     background-position: center;
@@ -173,12 +178,16 @@ button { border: none; background: none; cursor: pointer; }
 .nav > li:hover .mega-menu { opacity: 1; visibility: visible; }
 
 /* =========================================
-   2. INNER CONTENT STYLES
+   2. INNER CONTENT STYLES (Dark Theme)
    ========================================= */
 .menu-column-list, .menu-column-card {
-    background: #fff;
-    border: 1px solid #f0f0f0;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    /* CHANGE: Matches wrapper color */
+    background: var(--dark-blue);
+    
+    /* CHANGE: Border is now subtle white */
+    border: 1px solid rgba(255,255,255,0.15);
+    
+    box-shadow: none;
     border-radius: 4px;
     padding: 25px;
     height: 100%;
@@ -187,56 +196,90 @@ button { border: none; background: none; cursor: pointer; }
     transition: all 0.3s ease;
     text-align: left; 
 }
-.menu-column-list:hover, .menu-column-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+.menu-column-list:hover, .menu-column-card:hover { 
+    transform: translateY(-3px); 
+    background: rgba(255,255,255,0.05); /* Slight highlight on hover */
+    border-color: rgba(255,255,255,0.3);
+}
 
-.menu-header { font-size: 22px; font-weight: 800; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; color: #333; }
-.menu-header i { color: #207DE9; }
+/* CHANGE: Header text to White */
+.menu-header { 
+    font-size: 22px; 
+    font-weight: 800; 
+    margin-bottom: 25px; 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    color: #ffffff; /* White */
+}
+.menu-header i { color: #41D48C; /* Green icon pops on blue */ }
 
-.link-list a { display: block; padding: 10px 0; color: #555; font-size: 14px; font-weight: 400; transition: 0.2s; text-decoration: none; }
-.link-list a:hover { color: #207DE9; padding-left: 5px; }
+/* CHANGE: Links to Light Gray/White */
+.link-list a { 
+    display: block; 
+    padding: 10px 0; 
+    color: #cbd5e0; /* Light Gray */
+    font-size: 14px; 
+    font-weight: 400; 
+    transition: 0.2s; 
+    text-decoration: none; 
+}
+.link-list a:hover { 
+    color: #ffffff; /* White on hover */
+    padding-left: 5px; 
+}
 
 .menu-column-card { justify-content: space-between; }
-.card-content h3 { font-size: 18px; font-weight: 800; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 2px solid; line-height: 1.4; text-align: left; }
-.card-content h4 { font-size: 14px; font-weight: 600; margin-bottom: 15px; padding-bottom: 12px; text-align: left; }
-.card-content p { font-size: 13px; color: #4a5568; margin-bottom: 10px; text-align: left; }
-.section-icon { font-size: 32px; margin-bottom: 15px; display: inline-block; }
 
-/* Themes */
-.nav > li:nth-child(1) .mega-menu > a:nth-child(2) { background: rgba(215, 240, 255, 0.7) !important; }
-.nav > li:nth-child(1) .mega-menu > a:nth-child(2) h3 { color: #1E40AF; border-bottom-color: #1E40AF; }
-.nav > li:nth-child(1) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; }
-.nav > li:nth-child(1) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; }
+/* CHANGE: Card Headings to White */
+.card-content h3 { 
+    font-size: 18px; 
+    font-weight: 800; 
+    margin-bottom: 15px; 
+    padding-bottom: 15px; 
+    border-bottom: 1px solid rgba(255,255,255,0.2); 
+    line-height: 1.4; 
+    text-align: left; 
+    color: #ffffff; 
+}
+.card-content h4 { 
+    font-size: 14px; 
+    font-weight: 600; 
+    margin-bottom: 15px; 
+    padding-bottom: 12px; 
+    text-align: left; 
+    color: #ffffff; 
+}
 
-.nav > li:nth-child(2) .mega-menu > a:nth-child(2) { background: rgba(210, 230, 255, 0.7) !important; }
-.nav > li:nth-child(2) .mega-menu > a:nth-child(2) h3 { color: #1D4ED8; border-bottom-color: #1D4ED8; }
-.nav > li:nth-child(2) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; }
-.nav > li:nth-child(2) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; }
+/* CHANGE: Paragraphs to Light Gray */
+.card-content p { 
+    font-size: 13px; 
+    color: #cbd5e0; 
+    margin-bottom: 10px; 
+    text-align: left; 
+}
+.section-icon { font-size: 32px; margin-bottom: 15px; display: inline-block; color: #41D48C; }
 
-.nav > li:nth-child(3) .mega-menu > a:nth-child(2) { background: rgba(230, 245, 255, 0.7) !important; }
-.nav > li:nth-child(3) .mega-menu > a:nth-child(2) h3 { color: #1E40AF; border-bottom-color: #1E40AF; }
-.nav > li:nth-child(3) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; }
-.nav > li:nth-child(3) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; }
+/* Themes - Adjusted for Dark Background (Subtle transparent overlays) */
+.nav > li:nth-child(1) .mega-menu > a:nth-child(2) { background: rgba(255, 255, 255, 0.05) !important; }
+.nav > li:nth-child(1) .mega-menu > a:nth-child(2) h3 { color: #fff; border-bottom-color: rgba(255,255,255,0.2); }
+.nav > li:nth-child(1) .mega-menu > a:nth-child(3) { background: rgba(255, 255, 255, 0.05) !important; }
+.nav > li:nth-child(1) .mega-menu > a:nth-child(3) h3 { color: #fff; border-bottom-color: rgba(255,255,255,0.2); }
 
-.nav > li:nth-child(4) .mega-menu > a:nth-child(2) { background: rgba(215, 240, 255, 0.7) !important; }
-.nav > li:nth-child(4) .mega-menu > a:nth-child(2) h3 { color: #1D4ED8; border-bottom-color: #1D4ED8; }
-.nav > li:nth-child(4) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; }
-.nav > li:nth-child(4) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; }
-
-.nav > li:nth-child(5) .mega-menu > a:nth-child(2) { background: rgba(220, 245, 255, 0.7) !important; }
-.nav > li:nth-child(5) .mega-menu > a:nth-child(2) h3 { color: #1E40AF; border-bottom-color: #1E40AF; }
-.nav > li:nth-child(5) .mega-menu > a:nth-child(3) { background: rgba(200, 225, 255, 0.7) !important; }
-.nav > li:nth-child(5) .mega-menu > a:nth-child(3) h3 { color: #3B82F6; border-bottom-color: #3B82F6; }
+/* Apply same logic to all children (Using universal selector for cleaner code) */
+.mega-menu > a { background: rgba(255, 255, 255, 0.05) !important; }
+.mega-menu > a h3 { color: #fff; border-bottom-color: rgba(255,255,255,0.2); }
 
 /* Buttons */
 .btn-blue, .btn-orange {
     display: block; width: 100%; padding: 12px 0; margin-top: auto; border-radius: 4px;
     font-weight: 700; font-size: 14px; text-align: center; text-decoration: none; transition: background 0.3s ease;
 }
-.btn-blue { background-color: #1D4ED8; color: #fff; }
+.btn-blue { background-color: #4299e1; /* Lighter blue for dark bg */ color: #fff; }
 .btn-orange { background-color: #3B82F6; color: #fff; }
-.btn-blue:hover, .btn-orange:hover { filter: brightness(0.9); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.btn-blue:hover, .btn-orange:hover { filter: brightness(1.1); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
 
-/* CTA Button */
+/* CTA Button (Green) */
 .cta-button-nav {
     margin-left: auto; background-color: #41D48C !important; color: #fff !important;
     padding: 10px 24px; border-radius: 4px; font-weight: 700; font-size: 14px; white-space: nowrap; text-decoration: none; display: inline-block; border: none;
