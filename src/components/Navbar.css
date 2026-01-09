@@ -45,11 +45,11 @@ button { border: none; background: none; cursor: pointer; }
 
 /* Top Blue Bar */
 .top-info-bar {
-    background-color: var(--dark-blue);
+    background-color: #ffffff;
     padding: 8px 0;
     font-size: 10px;
     font-weight: 500;
-    color: #ffffff;
+    color: var(--dark-blue);
     border-bottom: none;
 }
 
