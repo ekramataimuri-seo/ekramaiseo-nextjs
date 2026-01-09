@@ -95,8 +95,7 @@ button { border: none; background: none; cursor: pointer; }
     transition: all 0.2s;
 
 }
-
-.nav > li > a {
+.page-header #fxmenu .ubermenu-nav > li > a
     font-family: 'Roboto Flex', sans-serif;
     font-size: 16px;
     font-weight: 500;
