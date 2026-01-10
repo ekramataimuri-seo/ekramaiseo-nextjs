@@ -1,13 +1,20 @@
 /* =========================================
-   1. VARIABLES & RESET
+   1. FONT IMPORT & VARIABLES
    ========================================= */
+/* We import the font here so it works immediately */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@300;400;500;700;900&display=swap');
+
 :root {
-    --font-base-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    /* Updated to use Roboto Flex first */
+    --font-base-default: "Roboto Flex", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     --dark-blue: #263A5F; 
     --light-text: #ffffff;
     --gray-text: #cbd5e0;
 }
 
+/* =========================================
+   2. GLOBAL RESET
+   ========================================= */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -23,7 +30,7 @@ ul { list-style: none; }
 button { border: none; background: none; cursor: pointer; }
 
 /* =========================================
-   2. HEADER & LAYOUT
+   3. HEADER CONTAINERS
    ========================================= */
 .top-info-content, .nav-content-wrapper {
     margin: 0 auto;
@@ -72,7 +79,7 @@ button { border: none; background: none; cursor: pointer; }
 }
 
 /* =========================================
-   3. NAVIGATION BAR (Clean & Single Line)
+   4. NAVIGATION BAR (Restored)
    ========================================= */
 .nav-content-wrapper {
     display: flex;
@@ -101,7 +108,7 @@ button { border: none; background: none; cursor: pointer; }
     height: 100%;
     display: flex;
     align-items: center;
-    padding: 0 40px 0 0; /* Right spacing only */
+    padding: 0 40px 0 0; 
     cursor: pointer;
     position: static; 
     transition: opacity 0.2s; 
@@ -110,10 +117,11 @@ button { border: none; background: none; cursor: pointer; }
 /* Navigation Title Styles */
 .nav > li > a {
     font-family: var(--font-base-default);
-    
-    /* Matches list item font weight */
+    /* Matching typography */
     font-size: 14px;
-    font-weight: 500; 
+    font-weight: 500;        
+    letter-spacing: -0.005em; 
+    line-height: 1.5;
     
     color: var(--dark-blue); 
     transition: color 0.2s;
@@ -121,24 +129,18 @@ button { border: none; background: none; cursor: pointer; }
     display: flex;
     align-items: center;
     gap: 12px; 
-    
-    /* Forces single line (No wrapping) */
     white-space: nowrap;
 }
 
-/* Hover State - Clean (No Background) */
-.nav > li:hover {
-    background-color: transparent; 
-}
-.nav > li:hover > a {
-    color: #207DE9; /* Blue text on hover */
-}
+/* Hover State */
+.nav > li:hover { background-color: transparent; }
+.nav > li:hover > a { color: #207DE9; }
 .nav-arrow { font-size: 11px; color: #889bb0; transition: transform 0.3s ease; }
 .nav > li:hover .nav-arrow { transform: rotate(180deg); color: #207DE9; }
 
 
 /* =========================================
-   4. MEGA MENU (Dark Blue Theme)
+   5. MEGA MENU
    ========================================= */
 .mega-menu {
     position: fixed;
@@ -148,10 +150,8 @@ button { border: none; background: none; cursor: pointer; }
     
     width: 100vw; 
     max-width: none;
-    
     padding: 45px max(24px, calc((100vw - 1400px) / 2));
     
-    /* Dark Blue Background to match top bar */
     background-color: var(--dark-blue);
     
     border-radius: 0 0 4px 4px;
@@ -185,9 +185,8 @@ button { border: none; background: none; cursor: pointer; }
 
 .nav > li:hover .mega-menu { opacity: 1; visibility: visible; }
 
-
 /* =========================================
-   5. INNER CONTENT (Dark Theme Text)
+   6. INNER CONTENT
    ========================================= */
 .menu-column-list, .menu-column-card {
     background: transparent; 
@@ -201,11 +200,8 @@ button { border: none; background: none; cursor: pointer; }
     transition: all 0.2s;
 }
 
-.menu-column-list:hover, .menu-column-card:hover {
-    background: rgba(255,255,255,0.05); 
-}
+.menu-column-list:hover, .menu-column-card:hover { background: rgba(255,255,255,0.05); }
 
-/* Header Text (White) */
 .menu-header { 
     font-size: 22px; font-weight: 800; margin-bottom: 25px; 
     display: flex; align-items: center; gap: 10px; 
@@ -213,19 +209,20 @@ button { border: none; background: none; cursor: pointer; }
 }
 .menu-header i { color: #41D48C; }
 
-/* Links (Light Gray) */
 .link-list a { 
     display: block; padding: 10px 0; 
     color: #ffffff; 
+    font-family: var(--font-base-default);
     font-size: 14px; 
-    font-weight: 400; 
+    font-weight: 500;        
+    letter-spacing: -0.005em; 
+    line-height: 1.5;
     transition: 0.2s; 
 }
 .link-list a:hover { color: #ffffff; padding-left: 5px; }
 
 .menu-column-card { justify-content: space-between; }
 
-/* Card Headings (White) */
 .card-content h3 { 
     font-size: 18px; font-weight: 800; margin-bottom: 15px; padding-bottom: 15px; 
     border-bottom: 1px solid rgba(255,255,255,0.2); 
@@ -235,17 +232,10 @@ button { border: none; background: none; cursor: pointer; }
     font-size: 14px; font-weight: 600; margin-bottom: 15px; padding-bottom: 12px; 
     color: #ffffff; 
 }
-.card-content p { 
-    font-size: 13px; 
-    color: #ffffff; 
-    margin-bottom: 10px; 
-}
+.card-content p { font-size: 13px; color: #ffffff; margin-bottom: 10px; }
 .section-icon { font-size: 32px; margin-bottom: 15px; display: inline-block; color: #41D48C; }
 
-
-/* =========================================
-   6. BUTTONS & CTA
-   ========================================= */
+/* Buttons */
 .btn-blue, .btn-orange {
     display: block; width: 100%; padding: 12px 0; margin-top: auto; border-radius: 4px;
     font-weight: 700; font-size: 14px; text-align: center; transition: background 0.3s ease;
@@ -261,7 +251,7 @@ button { border: none; background: none; cursor: pointer; }
 .cta-button-nav:hover { background-color: #36b575 !important; }
 
 /* =========================================
-   7. MOBILE MENU & ANIMATION
+   7. MOBILE MENU
    ========================================= */
 .hamburger, .mobile-nav-container { display: none; }
 
