@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Navbar from "@/components/Navbar"; // <--- 1. IMPORT NAVBAR
 
 export const metadata: Metadata = {
   title: "Ekrama SEO",
@@ -14,15 +15,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* --- 1. GOOGLE FONTS (Roboto Flex) --- */}
+        {/* --- GOOGLE FONTS --- */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@300;400;700;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@300;400;500;700;900&display=swap"
           rel="stylesheet"
         />
 
-        {/* --- 2. FONT AWESOME ICONS --- */}
+        {/* --- FONT AWESOME ICONS --- */}
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -30,6 +31,9 @@ export default function RootLayout({
       </head>
       
       <body>
+        {/* --- 2. DISPLAY NAVBAR HERE --- */}
+        <Navbar />
+        
         {children}
       </body>
     </html>
