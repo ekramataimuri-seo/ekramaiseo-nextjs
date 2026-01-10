@@ -251,35 +251,73 @@ button { border: none; background: none; cursor: pointer; }
 .cta-button-nav:hover { background-color: #36b575 !important; }
 
 /* =========================================
-   7. MOBILE MENU
+   7. MOBILE MENU (REPAIRED)
    ========================================= */
 .hamburger, .mobile-nav-container { display: none; }
 
 @media (max-width: 1024px) {
     .nav, .cta-button-nav { display: none; }
+    
     .hamburger { display: flex; flex-direction: column; gap: 5px; margin-left: auto; cursor: pointer; }
     .hamburger span { width: 25px; height: 3px; background-color: #263A5F; }
     
     .mobile-nav-container {
-        display: block; position: fixed; top: 105px; left: 0; width: 100%; height: calc(100vh - 105px);
-        background: #ffffff; overflow-y: auto; padding-bottom: 40px; transform: translateX(100%);
+        display: block; position: fixed; 
+        top: 105px; /* Adjust this if your header height changes */
+        left: 0; width: 100%; height: calc(100vh - 105px);
+        background: #ffffff; overflow-y: auto; padding-bottom: 40px; 
+        transform: translateX(100%);
         transition: transform 0.3s ease; z-index: 998; border-top: 1px solid #eee;
     }
     .mobile-nav-container.active { transform: translateX(0); }
-    .mobile-accordion-header { padding: 15px 24px; display: flex; justify-content: space-between; font-weight: 700; color: #263A5F; }
-    .mobile-link { display: block; padding: 10px 30px; color: #555; font-size: 14px; }
+
+    /* The Header of each dropdown */
+    .mobile-accordion-header { 
+        padding: 20px 24px; 
+        display: flex; 
+        justify-content: space-between; 
+        font-weight: 700; 
+        color: #263A5F; 
+        border-bottom: 1px solid #f0f0f0;
+        background: #ffffff; /* Ensures text is readable */
+    }
+
+    /* THE FIX: Dropdown content logic */
+    .mobile-accordion-content {
+        display: none;      /* Hidden by default */
+        background: #f9f9f9; /* Contrast color so it looks like a sub-menu */
+    }
+
+    /* This class is added by React when you click the header */
+    .mobile-accordion-content.open {
+        display: block;     /* Forces the menu to push items below it down */
+    }
+
+    .mobile-link { 
+        display: block; 
+        padding: 12px 40px; 
+        color: #555; 
+        font-size: 14px; 
+        border-bottom: 1px solid #eee;
+    }
+
     .mobile-cta-wrapper { padding: 24px; text-align: center; }
-    .mobile-btn { display: block; width: 100%; background-color: #41D48C; color: #fff; padding: 14px; font-weight: 700; margin-top: 10px; }
+    .mobile-btn { 
+        display: block; width: 100%; background-color: #41D48C; 
+        color: #fff; padding: 14px; font-weight: 700; 
+        border-radius: 4px; margin-top: 10px; 
+    }
 }
 
+/* Scroll Animation */
 @keyframes slideDownFade {
     0% { transform: translateY(-100%); opacity: 0; }
     100% { transform: translateY(0); opacity: 1; }
 }
 .header-scrolled {
-    position: fixed !important; top: 0; left: 0; width: 100%; background-color: #ffffff;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important; animation: slideDownFade 0.4s ease-out forwards;
-    padding-bottom: 0;
+    position: fixed !important; top: 0; left: 0; width: 100%; 
+    background-color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important; 
+    animation: slideDownFade 0.4s ease-out forwards;
 }
 .header-scrolled .top-info-bar { display: none; }
-body { padding-top: 0; transition: padding-top 0.3s; }
