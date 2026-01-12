@@ -5,7 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "admin.ekramaiseo.com",
+        hostname: "admin.wpfedev.com", // Updated to your new Admin
         port: "",
         pathname: "/**",
       },
